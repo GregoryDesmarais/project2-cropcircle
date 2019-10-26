@@ -1,4 +1,6 @@
 var expect = require("chai").expect;
+var describe = require("mocha").describe;
+var it = require("mocha").it;
 
 describe("canary test", function() {
   // A "canary" test is one we set up to always pass
