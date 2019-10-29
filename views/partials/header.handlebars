@@ -15,13 +15,27 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <p class="text-center">Categories</p>
                     <div class="dropdown-divider text-center"></div>
-                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-home"></i><p class="d-inline dropdownLabel">Home</p></a>
-                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-film"></i><p class="d-inline dropdownLabel">Movies</p></a>
-                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-tv"></i><p class="d-inline dropdownLabel">Television</p></a>
-                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-football-ball"></i><p class="d-inline dropdownLabel">Sports</p></a>
-                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-laptop"></i><p class="d-inline dropdownLabel">Technology</p></a>
-                    <a class="dropdown-item" href="#"><i class="d-inline far fa-newspaper"></i><p class="d-inline dropdownLabel">News</p></a>
-                    <a class="dropdown-item" href="#"> <i class="d-inline fas fa-cat"></i><p class="d-inline dropdownLabel">Cats</p></a>
+                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-home"></i>
+                        <p class="d-inline dropdownLabel">Home</p>
+                    </a>
+                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-film"></i>
+                        <p class="d-inline dropdownLabel">Movies</p>
+                    </a>
+                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-tv"></i>
+                        <p class="d-inline dropdownLabel">Television</p>
+                    </a>
+                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-football-ball"></i>
+                        <p class="d-inline dropdownLabel">Sports</p>
+                    </a>
+                    <a class="dropdown-item" href="#"><i class="d-inline fas fa-laptop"></i>
+                        <p class="d-inline dropdownLabel">Technology</p>
+                    </a>
+                    <a class="dropdown-item" href="#"><i class="d-inline far fa-newspaper"></i>
+                        <p class="d-inline dropdownLabel">News</p>
+                    </a>
+                    <a class="dropdown-item" href="#"> <i class="d-inline fas fa-cat"></i>
+                        <p class="d-inline dropdownLabel">Cats</p>
+                    </a>
 
                 </div>
             </li>
@@ -41,12 +55,48 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Log In</a>
-                <a class="dropdown-item" href="#">Register</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#registerAccountModal">Register</a>
                 <a class="dropdown-item" href="#">Sign Out</a>
             </div>
         </li>
     </ul>
 </nav>
+
+<div class="modal" id="registerAccountModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create an Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="registerUserName">User Name</label>
+                        <input type="email" class="form-control col-10" id="registerUserName" aria-describedby="userName"
+                            placeholder="Enter User Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email address</label>
+                        <input type="email" class="form-control col-10" id="registerEmail" aria-describedby="email"
+                            placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" class="form-control col-10" id="registerPassword" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">I agree to the adhere to CornHub's rules and conditions.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitAccount">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--<div class="account">
         <button class="signOut">Sign Out</button>

@@ -1,13 +1,60 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
+  line-height: 1.6em;
+  background-image: url("./../images/corn-seamless-pattern-background.jpg");
+}
+
+.card-title{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.jumbotron{
+  z-index: 1;
+  margin-top: 0px;
+  opacity: 90%;
+  background-color: null;
+}
+
+.description{
+  max-width: 600px;
+  margin: auto;
+}
+.jumbotron-container{
+  opacity: 170%;
+  z-index: 200;
+}
+
+.list-group-item:hover{
+  border: 1px grey solid;
+}
+
+.container{
+  margin: auto;
+}
+
+.homepage-container{
+  margin-bottom: 50px;
+}
+
+.about{
+  margin: 0 auto;
+}
+
+.jumbotron-title{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.home-page-header-break{
+  border: 1px grey solid;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
 
 .dropdown-toggle{
   width: 200px;
-}
-
-.navbar{
-  margin-bottom: 20px;
 }
 
 .navbar-nav {
