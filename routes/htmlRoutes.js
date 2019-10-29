@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 var db = require("../models");
 
 module.exports = function(app) {
@@ -27,3 +28,12 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+//thread will be the handlebars template used to display the specific thread that the user is looking for.
+app.get("/:category", function(req, res) {
+  db.Post.findAll({ where: { id: req.params.category } }).then(function(category) {
+    res.render("thread", {
+      post: category
+    });
+  });
+});
