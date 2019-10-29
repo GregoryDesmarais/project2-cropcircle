@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "passroot",
-    "database": "exampledb",
+    "database": "cornHub_db",
     "host": "localhost",
     "dialect": "mysql"
   },
