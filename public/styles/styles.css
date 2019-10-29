@@ -5,18 +5,49 @@
 .dropdown-toggle{
   width: 200px;
 }
+
+.navbar{
+  margin-bottom: 20px;
+}
+
 .navbar-nav {
   margin-right: 10px;
 }
+
+.navbar-nav{
+  border: 2px lightgray solid
+}
+
 .navbar-nav:hover {
-  border: 2px, grey, solid;
+  border: 2px grey solid;
 }
 
 .form-control{
   width: 600px;
 }
 
+.dropdownLabel{
+  margin-left: 20px;
+}
+
 .dropdown-toggle::after {
   margin-left: 110px;
   margin-right: 0px;
+}
+
+.rules{
+  padding-top: 20px;
+  border: 2px lightgrey solid;
+}
+
+.rules:hover{
+  border: grey 2px solid
+}
+
+.post{
+  border: 2px lightgrey solid
+}
+
+.post:hover{
+  border: grey 2px solid
 }
