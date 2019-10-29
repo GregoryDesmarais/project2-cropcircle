@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Comment = sequelize.define("Comment", {
-    userName: DataTypes.string,
+    userName: DataTypes.STRING,
     corntent: DataTypes.STRING
   });
   return Comment;

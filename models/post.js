@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   const Post = sequelize.define("Post", {
-    userName: DataTypes.string,
+    userName: DataTypes.STRING,
     corntent: DataTypes.STRING,
     header: DataTypes.STRING,
-    likes: DataTypes.INT
+    likes: DataTypes.INTEGER
   });
 
   Post.associate = function(models) {
@@ -12,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  return User;
+  return Post;
 };
