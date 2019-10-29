@@ -1,0 +1,22 @@
+.list-group-item {
+  line-height: 2.5;
+}
+
+.dropdown-toggle{
+  width: 200px;
+}
+.navbar-nav {
+  margin-right: 10px;
+}
+.navbar-nav:hover {
+  border: 2px, grey, solid;
+}
+
+.form-control{
+  width: 600px;
+}
+
+.dropdown-toggle::after {
+  margin-left: 110px;
+  margin-right: 0px;
+}
