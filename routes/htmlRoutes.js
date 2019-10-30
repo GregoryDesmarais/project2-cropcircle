@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   // Data test section.
   // Create simple user.
-  app.get("/gregTest/:post", function(req, res) {
+  app.get("/gregTest/:post", function(req) {
     db.User.create({
       userName: "Greg",
       email: "Greg@greg.com",
