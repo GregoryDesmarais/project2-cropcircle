@@ -12,12 +12,22 @@ module.exports = function(app) {
   //Create a new user
   app.post("/api/newUser", (req, res) => {
     console.log(req.body);
-    db.User.create({
-      userName: req.body.name,
-      email: req.body.email,
-      password: req.body.password
+    db.User.findAll({
+      where: {
+        userName: req.body.name
+      }
+    }).then(data => {
+      if (data.length > 0) {
+        res.json({ newUser: false });
+      } else {
+        db.User.create({
+          userName: req.body.name,
+          email: req.body.email,
+          password: req.body.password
+        });
+        res.json({ newUser: true });
+      }
     });
-    res.json({ newUser: true });
   });
 
   // Create a new example

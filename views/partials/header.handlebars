@@ -62,6 +62,34 @@
     </ul>
 </nav>
 
+<div class="modal" id="logInModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Log Into Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="logInUserName">User Name</label>
+                        <input type="text" class="form-control col-10" id="logInUserName" aria-describedby="userName"
+                            placeholder="Enter User Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="logInPassword">Password</label>
+                        <input type="password" class="form-control col-10" id="logInPassword" placeholder="Password">
+                    </div>
+                    <p class="logInErrorMessage">One or more fields invalid</p>
+                    <button type="submit" class="btn btn-primary" id="logInAccount">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal" id="registerAccountModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -91,7 +119,8 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">I agree to the adhere to CornHub's rules and conditions.</label>
                     </div>
-                    <p class="newUserErrorMessage">One or more fields invalid</p>
+                    <p class="newUserErrorMessage userAlreadyExists">That user name has already been taken</p>
+                    <p class="newUserErrorMessage invalidField">One or more fields invalid</p>
                     <button type="submit" class="btn btn-primary" id="submitAccount">Submit</button>
                 </form>
             </div>

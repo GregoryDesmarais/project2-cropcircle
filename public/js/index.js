@@ -108,6 +108,8 @@ const createNewUser = function() {
     email: userEmail,
     password: userPass
   };
+
+  $(".newUserErrorMessage").hide();
   if (
     !(
       userName &&
@@ -124,11 +126,18 @@ const createNewUser = function() {
   } else {
     API.postRequest(newUser, "/api/newUser").then(function(data) {
       console.log(data);
-      $("#registerAccountModal").modal("toggle");
-      $(".newUserErrorMessage").hide();
-      $newUserName.val("");
-      $newUserEmail.val("");
-      $newUserPass.val("");
+      if (data.newUser) {
+        $("#registerAccountModal").modal("toggle");
+        $(".newUserErrorMessage").hide();
+        $newUserName.val("");
+        $newUserEmail.val("");
+        $newUserPass.val("");
+      } else {
+        $(".userAlreadyExists")
+          .show()
+          .css({ color: "red" })
+          .addClass("text-center");
+      }
     });
   }
 };
