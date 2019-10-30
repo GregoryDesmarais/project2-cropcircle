@@ -6,6 +6,10 @@ body{
   background-color: black;
 }
 
+#searchbar {
+ width: 500px;
+}
+
 .card-title{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
