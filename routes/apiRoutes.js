@@ -9,6 +9,27 @@ module.exports = function(app) {
     });
   });
 
+  //Create a new user
+  app.post("/api/newUser", (req, res) => {
+    console.log(req.body);
+    db.User.findAll({
+      where: {
+        userName: req.body.name
+      }
+    }).then(data => {
+      if (data.length > 0) {
+        res.json({ newUser: false });
+      } else {
+        db.User.create({
+          userName: req.body.name,
+          email: req.body.email,
+          password: req.body.password
+        });
+        res.json({ newUser: true });
+      }
+    });
+  });
+
   // Create a new example
   app.post("/api/posts", verifyToken, (req, res) => {
     jwt.verify(req.token, "secretkey", (err, authData) => {
@@ -27,17 +48,33 @@ module.exports = function(app) {
   });
 
   app.post("/api/login", (req, res) => {
-    const user = {
-      id: 1,
-      username: "charles",
-      email: "charles@gmail.com"
-    };
-    jwt.sign({ user }, "secretkey", (err, token) => {
-      if (err) {
-        throw err;
-      } else {
-        res.json({ token });
+    console.log(req.body);
+    // const user = {
+    //   id: 1,
+    //   username: "charles",
+    //   email: "charles@gmail.com"
+    // };
+    db.User.findOne({
+      where: {
+        userName: req.body.userName,
+        password: req.body.password
       }
+    }).then(data => {
+      console.log(data.dataValues);
+      user = {
+        id: data.id,
+        userName: data.dataValues.userName,
+        email: data.dataValues.email,
+        createdAt: data.dataValues.createdAt
+      };
+      jwt.sign({ user }, "secretkey", (err, token) => {
+        if (err) {
+          throw err;
+        } else {
+          const data = [user, token];
+          res.json({ data });
+        }
+      });
     });
   });
 

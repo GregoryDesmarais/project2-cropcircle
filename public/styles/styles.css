@@ -17,6 +17,10 @@ body{
   background-color: null;
 }
 
+.newUserErrorMessage, .logInErrorMessage{
+  display: none;
+}
+
 .description{
   max-width: 600px;
   margin: auto;
