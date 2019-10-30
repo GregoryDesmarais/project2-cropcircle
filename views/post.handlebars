@@ -10,12 +10,7 @@
     </div>
   {{/each}}
   {{#if comments}}
-      {{#each comments}}
-        <div class="card">
-        <div class="card-header">By: {{userName}} At: {{createdAt}}</div> <!--Inserts the userName and createdAt time in the card title-->
-        <div class="card-body">{{corntent}}</div><!--Inserts the comments content-->
-        </div>
-      {{/each}}
+      {{>comments}}
   {{else}}
     <div class="card">
       <div class="card-header">There are no comments for this post!</div> <!--Inserts the userName and createdAt time in the card title-->
