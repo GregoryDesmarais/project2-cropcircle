@@ -125,6 +125,10 @@ const createNewUser = function() {
     API.postRequest(newUser, "/api/newUser").then(function(data) {
       console.log(data);
       $("#registerAccountModal").modal("toggle");
+      $(".newUserErrorMessage").hide();
+      $newUserName.val("");
+      $newUserEmail.val("");
+      $newUserPass.val("");
     });
   }
 };
