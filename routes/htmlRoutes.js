@@ -40,18 +40,32 @@ module.exports = function(app) {
       PostId: req.params.post, //Assuming that for each post "page", we will have a "reply"
       UserId: "1" //This is where the userName is passed from the webpage.
     });
-    res.render("404");
+  });
+
+  //Get all posts for category
+  app.get("/:category", function(req, res) {
+    db.Post.findAll({ where: { category: req.params.category } }).then(function(
+      posts
+    ) {
+      res.render("post", {
+        post: posts
+      });
+    });
   });
 
   //Beginnings of grabbing all comments for a post. "Should" grab all comments where PostId = the post parameter number.
   app.get("/:category/:post", function(req, res) {
-    db.Comment.findAll({
-      where: {
-        PostId: req.params.post
-      }
-    }).then(function(data) {
-      res.render("post", {
-        comments: data
+    db.Post.findAll({ where: { id: req.params.post } }).then(function(post) {
+      db.Comment.findAll({
+        where: {
+          PostId: req.params.post
+        }
+      }).then(function(comments) {
+        console.log(comments);
+        res.render("post", {
+          post: post,
+          comments: comments
+        });
       });
     });
   });
