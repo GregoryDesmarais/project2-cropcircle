@@ -98,10 +98,7 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
-$newUserSubmit.on("click", () => {
+const createNewUser = function() {
   const userName = $newUserName.val().trim();
   const userEmail = $newUserEmail.val().trim();
   const userPass = $newUserPass.val().trim();
@@ -111,9 +108,28 @@ $newUserSubmit.on("click", () => {
     email: userEmail,
     password: userPass
   };
-  console.log(newUser);
-  API.postRequest(newUser, "/api/newUser").then(function(data) {
-    console.log(data);
-    $("#registerAccountModal").modal("toggle");
-  });
-});
+  if (
+    !(
+      userName &&
+      userName.length < 10 &&
+      userName.length > 3 &&
+      userEmail &&
+      userPass
+    )
+  ) {
+    $(".newUserErrorMessage")
+      .show()
+      .css({ color: "red" })
+      .addClass("text-center");
+  } else {
+    API.postRequest(newUser, "/api/newUser").then(function(data) {
+      console.log(data);
+      $("#registerAccountModal").modal("toggle");
+    });
+  }
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$newUserSubmit.on("click", createNewUser);

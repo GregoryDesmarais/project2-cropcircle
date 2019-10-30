@@ -16,6 +16,10 @@ body{
   background-color: null;
 }
 
+.newUserErrorMessage{
+  display: none;
+}
+
 .description{
   max-width: 600px;
   margin: auto;
