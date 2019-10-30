@@ -1,0 +1,5 @@
+id,userName,email,password,createdAt,updatedAt
+1,Greg,Greg@this.com,access,"2019-10-30 00:25:24","2019-10-30 00:25:24"
+2,Bradley,Bradley@this.com,access,"2019-10-30 20:42:15","2019-10-30 20:42:15"
+3,Dyl,Dyl@this.com,access,"2019-10-30 20:42:42","2019-10-30 20:42:42"
+4,Charles,Charles@this.com,access,"2019-10-30 20:44:49","2019-10-30 20:44:49"

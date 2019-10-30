@@ -1,0 +1,5 @@
+id,userName,corntent,createdAt,updatedAt,PostId,UserId
+1,Greg,"This is a test reply 1","2019-10-30 20:42:15","2019-10-30 20:42:15",1,1
+2,Bradley,"This is a test reply 2","2019-10-30 20:42:42","2019-10-30 20:42:42",1,2
+3,Dyl,"This is a test reply 3","2019-10-30 20:44:49","2019-10-30 20:44:49",1,3
+4,Charles,"This is a test reply 4","2019-10-30 20:44:51","2019-10-30 20:44:51",1,4

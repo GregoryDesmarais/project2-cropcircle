@@ -48,7 +48,7 @@ module.exports = function(app) {
     db.Post.findAll({ where: { category: req.params.category } }).then(function(
       posts
     ) {
-      res.render("post", {
+      res.render("categories", {
         post: posts
       });
     });
@@ -62,7 +62,6 @@ module.exports = function(app) {
           PostId: req.params.post
         }
       }).then(function(comments) {
-        console.log(comments);
         res.render("post", {
           post: post,
           comments: comments
