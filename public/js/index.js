@@ -105,6 +105,8 @@ $(function() {
   };
 
   const createNewUser = function() {
+    preventDefault();
+    console.log("hello");
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -131,6 +133,7 @@ $(function() {
         .addClass("text-center");
     } else {
       API.postRequest(newUser, "/api/newUser").then(function(data) {
+        console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
           $(".newUserErrorMessage").hide();
