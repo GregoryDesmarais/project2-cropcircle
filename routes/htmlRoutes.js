@@ -17,8 +17,44 @@ module.exports = function(app) {
     });
   });
 
+  // Data test section.
+  // Create simple user.
+  app.get("/gregTest/:post", function(req, res) {
+    db.User.create({
+      userName: "Greg",
+      email: "Greg@greg.com",
+      password: "access"
+    });
+    db.Post.create({
+      userName: "Greg",
+      category: "coding",
+      header: "Test Post 1",
+      corntent: "This is a test post",
+      UserId: "1" //This is where the userName is passed from the webpage.
+    });
+    db.Comment.create({
+      userName: "Greg",
+      corntent: "This is a test reply",
+      PostId: req.params.post,
+      UserId: "1" //This is where the userName is passed from the webpage.
+    });
+    res.render("404");
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
+  });
+
+  app.get("/:category/:post", function(req, res) {
+    db.Comment.findAll({
+      where: {
+        PostId: req.params.post
+      }
+    }).then(function(data) {
+      res.render("post", {
+        comments: data
+      });
+    });
   });
 };
