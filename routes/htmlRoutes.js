@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 var db = require("../models");
 
 module.exports = function(app) {
@@ -61,7 +62,6 @@ module.exports = function(app) {
           PostId: req.params.post
         }
       }).then(function(comments) {
-        console.log(comments);
         res.render("post", {
           post: post,
           comments: comments
