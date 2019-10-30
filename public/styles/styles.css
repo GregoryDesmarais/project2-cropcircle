@@ -2,7 +2,8 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   margin: auto;
   line-height: 1.6em;
-  background-image: url("./../images/corn-seamless-pattern-background.jpg");
+  background-image: url("./../images/corn-seamless-pattern-background.png");
+  background-color: black;
 }
 
 .card-title{
