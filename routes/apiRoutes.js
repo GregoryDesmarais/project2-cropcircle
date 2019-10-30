@@ -71,7 +71,8 @@ module.exports = function(app) {
         if (err) {
           throw err;
         } else {
-          res.json({ token });
+          const data = [user, token];
+          res.json({ data });
         }
       });
     });

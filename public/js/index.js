@@ -11,6 +11,7 @@ $(function() {
   const $userName = $("#logInUserName");
   const $userPass = $("#logInPassword");
   const $userLogInButton = $("#logInAccount");
+  let userInformation;
 
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -152,7 +153,11 @@ $(function() {
       userName: userName,
       password: userPass
     };
-    API.postRequest(user, "/api/login").then(data => console.log(data));
+    API.postRequest(user, "/api/login").then(data => {
+      userInformation = data;
+      sessionStorage.setItem("cornHubUser", JSON.stringify(data));
+      console.log(userInformation)
+    });
   };
 
   // Add event listeners to the submit and delete buttons
@@ -160,4 +165,7 @@ $(function() {
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
   $newUserSubmit.on("click", createNewUser);
   $userLogInButton.on("click", userLogIn);
+
+  userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
+  console.log(userInformation);
 });
