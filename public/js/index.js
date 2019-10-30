@@ -114,6 +114,6 @@ $newUserSubmit.on("click", () => {
   console.log(newUser);
   API.postRequest(newUser, "/api/newUser").then(function(data) {
     console.log(data);
-    $("#registerAccountModal").toggle();
+    $("#registerAccountModal").modal("toggle");
   });
 });
