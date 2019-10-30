@@ -1,30 +1,34 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+const $exampleText = $("#example-text");
+const $exampleDescription = $("#example-description");
+const $submitBtn = $("#submit");
+const $exampleList = $("#example-list");
+const $newUserSubmit = $("#submitAccount");
+const $newUserName = $("#registerUserName");
+const $newUserEmail = $("#registerEmail");
+const $newUserPass = $("#registerPassword");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  postRequest: function(example, targetURL) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
+      url: targetURL,
       data: JSON.stringify(example)
     });
   },
   getExamples: function() {
     return $.ajax({
-      url: "api/examples",
+      url: targetURL,
       type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: `${targetURL}/${id}`,
       type: "DELETE"
     });
   }
@@ -97,3 +101,18 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$newUserSubmit.on("click", () => {
+  const userName = $newUserName.val().trim();
+  const userEmail = $newUserEmail.val().trim();
+  const userPass = $newUserPass.val().trim();
+
+  const newUser = {
+    name: userName,
+    email: userEmail,
+    password: userPass
+  };
+  console.log(newUser);
+  API.postRequest(newUser, "/api/newUser").then(function(data) {
+    console.log(data);
+  });
+});

@@ -9,6 +9,17 @@ module.exports = function(app) {
     });
   });
 
+  //Create a new user
+  app.post("/api/newUser", (req, res) => {
+    console.log(req.body);
+    db.User.create({
+      userName: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    });
+    res.json({ newUser: true });
+  });
+
   // Create a new example
   app.post("/api/posts", verifyToken, (req, res) => {
     jwt.verify(req.token, "secretkey", (err, authData) => {
