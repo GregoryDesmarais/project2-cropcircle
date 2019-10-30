@@ -66,7 +66,7 @@ module.exports = function(app) {
 //thread will be the handlebars template used to display the specific thread that the user is looking for.
 app.get("/:category", function(req, res) {
   db.Post.findAll({ where: { id: req.params.category } }).then(function(category) {
-    res.render("thread", {
+    res.render("post", {
       post: category
     });
   });
