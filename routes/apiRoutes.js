@@ -48,17 +48,32 @@ module.exports = function(app) {
   });
 
   app.post("/api/login", (req, res) => {
-    const user = {
-      id: 1,
-      username: "charles",
-      email: "charles@gmail.com"
-    };
-    jwt.sign({ user }, "secretkey", (err, token) => {
-      if (err) {
-        throw err;
-      } else {
-        res.json({ token });
+    console.log(req.body);
+    // const user = {
+    //   id: 1,
+    //   username: "charles",
+    //   email: "charles@gmail.com"
+    // };
+    db.User.findOne({
+      where: {
+        userName: req.body.userName,
+        password: req.body.password
       }
+    }).then(data => {
+      console.log(data.dataValues);
+      user = {
+        id: data.id,
+        userName: data.dataValues.userName,
+        email: data.dataValues.email,
+        createdAt: data.dataValues.createdAt
+      };
+      jwt.sign({ user }, "secretkey", (err, token) => {
+        if (err) {
+          throw err;
+        } else {
+          res.json({ token });
+        }
+      });
     });
   });
 

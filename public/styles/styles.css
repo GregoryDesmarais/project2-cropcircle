@@ -16,7 +16,7 @@ body{
   background-color: null;
 }
 
-.newUserErrorMessage{
+.newUserErrorMessage, .logInErrorMessage{
   display: none;
 }
 
