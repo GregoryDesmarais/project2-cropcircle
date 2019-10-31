@@ -11,6 +11,7 @@ $(function() {
   const $userName = $("#logInUserName");
   const $userPass = $("#logInPassword");
   const $userLogInButton = $("#logInAccount");
+  const $signOutButton = $("#signOut");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
 
@@ -105,7 +106,6 @@ $(function() {
   };
 
   const createNewUser = function() {
-    console.log("hello");
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -149,6 +149,11 @@ $(function() {
     }
   };
 
+  const userLogOut = function() {
+    sessionStorage.setItem("cornHubUser", null);
+    location.reload();
+  };
+
   const userLogIn = function() {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
@@ -159,6 +164,7 @@ $(function() {
     API.postRequest(user, "/api/login").then(data => {
       userInformation = data;
       sessionStorage.setItem("cornHubUser", JSON.stringify(data));
+      $(".close").trigger("click");
     });
   };
 
@@ -167,4 +173,5 @@ $(function() {
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
   $newUserSubmit.on("click", createNewUser);
   $userLogInButton.on("click", userLogIn);
+  $signOutButton.on("click", userLogOut);
 });
