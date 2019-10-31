@@ -105,7 +105,6 @@ $(function() {
   };
 
   const createNewUser = function() {
-    preventDefault();
     console.log("hello");
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
