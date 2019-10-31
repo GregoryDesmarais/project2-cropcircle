@@ -1,13 +1,45 @@
 {{!-- Picks every post from this category and renders to page --}}
+
+</div>
+<button class="btn btn-primary" id="newPostBtn"
+    {{#each post}}data-category="{{category}}" {{/each}}>Submit New Post</button>
 <div class="container">
     {{#each post}}
     <div class="card">
         <div class="card-header">
-           <a href="/{{category}}/{{id}}"> Title: {{header}}</a> 
+            <a href="/{{category}}/{{id}}"> Title: {{header}}</a>
         </div>
         <div class="body">
             {{corntent}}
         </div>
     </div>
     {{/each}}
+</div>
+
+<div class="modal" id="newPostModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="postTitle">Title</label>
+                        <input type="text" class="form-control col-12" rows="9" id="newPostTitle" aria-describedby="userName"
+                            placeholder="Post Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPostContent">Post Body</label>
+                        <textarea class="form-control col-12 newPostTextArea" id="newPostContent" placeholder="Post"></textarea>
+                    </div>
+                    <p class="logInErrorMessage">One or more fields invalid</p>
+                </form>
+                <button class="btn btn-primary" id="submitNewPostBtn">Submit</button>
+            </div>
+        </div>
+    </div>
 </div>

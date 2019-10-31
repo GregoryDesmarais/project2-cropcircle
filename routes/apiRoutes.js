@@ -32,6 +32,8 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/posts", verifyToken, (req, res) => {
+    console.log(req.body);
+    //const requestData = JSON.parse(req.body);
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         res.sendStatus(403);
@@ -42,7 +44,12 @@ module.exports = function(app) {
         });
       }
     });
-    db.Example.create(req.body).then(function(dbExample) {
+    db.Post.create({
+      userName: req.body.data.userName,
+      category: req.body.data.category,
+      corntent: req.body.data.corntent,
+      header: req.body.data.header
+    }).then(function(dbExample) {
       res.json(dbExample);
     });
   });
