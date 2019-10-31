@@ -1,5 +1,5 @@
-    DROP DATABASE IF EXISTS cornHub_bd;
-    CREATE DATABASE cornHub_db;
+    DROP DATABASE IF EXISTS exampledb;
+    CREATE DATABASE exampledb;
 
 
     DROP DATABASE IF EXISTS testdb;
