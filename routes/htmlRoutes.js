@@ -49,7 +49,8 @@ module.exports = function(app) {
       posts
     ) {
       res.render("categories", {
-        post: posts
+        post: posts, 
+        category: req.params.category
       });
     });
   });
