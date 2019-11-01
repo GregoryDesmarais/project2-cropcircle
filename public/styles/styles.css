@@ -26,10 +26,14 @@ body{
   font-size: 25px;
   margin-left: 0px;
 }
+.postLink{
+  margin-right: 10px;
+}
 
 .commentLinkFromPost{
   font-size: 14px;
   margin-left: 5px;
+  margin-top: 10px;
 }
 
 .jumbotron{

@@ -14,7 +14,7 @@
 </div> -->
 <button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
 
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordion">
     {{#each post}}
     <div class="card postHeaders">
         <div class="card-header " id="heading{{id}}">
@@ -25,10 +25,9 @@
                 </button>
                 <br>
                 <div class="commentLinkFromPost text-left col-12">
-                    <a href="/{{category}}/{{id}}"> Comments</a>
-                    <a class="">User Info</a>
+                    <a class="postLink"href="/{{category}}/{{id}}"> Comments</a>
+                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink"href="#" name="{{UserId}}">User: {{userName}}</a>
                 </div>
-
             </h2>
         </div>
 
