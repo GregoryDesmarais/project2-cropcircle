@@ -1,8 +1,6 @@
 {{!-- Picks every post from this category and renders to page --}}
 
-</div>
-<button class="btn btn-primary" id="newPostBtn"
-    {{#each post}}data-category="{{category}}" {{/each}}>Submit New Post</button>
+<!--
 <div class="container">
     {{#each post}}
     <div class="card">
@@ -14,6 +12,34 @@
         </div>
     </div>
     {{/each}}
+</div> -->
+<button class="btn btn-primary" id="newPostBtn"
+    {{#each post}}data-category="{{category}}" {{/each}}>Submit New Post</button>
+
+<div class="accordion" id="accordionExample">
+    {{#each post}}
+  <div class="card postHeaders">
+    <div class="card-header " id="heading{{id}}">
+      <h2 class="mb-0">
+        <button class="btn btn-link col-12 text-left postTitle" type="button" data-toggle="collapse" data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">
+          {{header}} 
+        </button>
+        <br>
+        <div class="commentLinkFromPost text-left col-12">
+            <a  href="/{{category}}/{{id}}"> Comments</a>
+        <a class="" >User Info</a>
+        </div>
+        
+      </h2>
+    </div>
+
+    <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}" data-parent="#accordionExample">
+      <div class="card-body">
+        {{corntent}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
 </div>
 
 <div class="modal" id="newPostModal" tabindex="-1" role="dialog">
