@@ -199,7 +199,8 @@ $(function() {
       userName: userInformation.data[0].userName,
       category: category,
       corntent: $newPostContent.val().trim(),
-      header: $newPostTitle.val().trim()
+      header: $newPostTitle.val().trim(),
+      UserId: userInformation.data[0].id
     };
     console.log(newPost);
     if (userInformation === null) {

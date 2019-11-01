@@ -1,8 +1,7 @@
 {{!-- Picks every post from this category and renders to page --}}
 
 </div>
-<button class="btn btn-primary" id="newPostBtn"
-    {{#each post}}data-category="{{category}}" {{/each}}>Submit New Post</button>
+<button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
 <div class="container">
     {{#each post}}
     <div class="card">

@@ -45,7 +45,8 @@ module.exports = function(app) {
       userName: req.body.userName,
       category: req.body.category,
       corntent: req.body.corntent,
-      header: req.body.header
+      header: req.body.header,
+      UserId: req.body.UserId
     }).then(function(dbExample) {
       console.log(dbExample);
       res.json({ postMade: true });
