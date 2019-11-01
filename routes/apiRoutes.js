@@ -36,6 +36,7 @@ module.exports = function(app) {
     const requestData = JSON.parse(JSON.stringify(req.body));
     console.log(requestData);
     jwt.verify(req.token, "secretkey", (err, authData) => {
+      console.log(authData);
       if (err) {
         res.sendStatus(403);
       }
@@ -46,17 +47,13 @@ module.exports = function(app) {
       corntent: req.body.corntent,
       header: req.body.header
     }).then(function(dbExample) {
+      console.log(dbExample);
       res.json({ postMade: true });
     });
   });
 
   app.post("/api/login", (req, res) => {
     console.log(req.body);
-    // const user = {
-    //   id: 1,
-    //   username: "charles",
-    //   email: "charles@gmail.com"
-    // };
     db.User.findOne({
       where: {
         userName: req.body.userName,

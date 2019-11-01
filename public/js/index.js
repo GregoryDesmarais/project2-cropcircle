@@ -194,16 +194,6 @@ $(function() {
     $("#newPostModal").modal("toggle");
   };
 
-  // submitPost: function(example, targetURL) {
-  //   return $.ajax({
-  //     headers: {
-  //       "Authorization": `Bearer ${userJWT}`
-  //     },
-  //     type: "POST",
-  //     url: targetURL,
-  //     data: JSON.stringify(example)
-  //   });
-
   const submitNewPost = function() {
     const newPost = {
       userName: userInformation.data[0].userName,
@@ -216,7 +206,9 @@ $(function() {
       console.log("you ain't logged in dawg");
     } else {
       API.submitPost(newPost, "/api/posts").then(function(data) {
-        console.log(data);
+        if (data.postMade) {
+          location.reload();
+        }
       });
     }
   };
