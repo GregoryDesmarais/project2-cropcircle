@@ -1,20 +1,22 @@
-<div class="container">
-  {{#each post}}
-    <div class="card">
-      <div class="card-header">
-        Title: {{header}}
-      </div>
-      <div class="body">
-        {{corntent}}
-      </div>
-    </div>
-  {{/each}}
-  {{#if comments}}
-      {{>comments}}
-  {{else}}
-    <div class="card">
-      <div class="card-header">There are no comments for this post!</div> <!--Inserts the userName and createdAt time in the card title-->
-      <div class="card-body">Does no one give a husk!?</div><!--Inserts the comments content-->
-    </div>
-  {{/if}}
+{{#each post}}
+<div class="card">
+  <div class="card-header">
+    Title: {{header}}
+  </div>
+  <div class="body">
+    {{corntent}}
+  </div>
 </div>
+{{/each}}
+{{#if comments}}
+{{>comments}}
+{{else}}
+<div class="card">
+  <div class="card-header">There are no comments for this post!</div>
+  <!--Inserts the userName and createdAt time in the card title-->
+  <div class="card-body">Does no one give a husk!?</div>
+  <!--Inserts the comments content-->
+</div>
+{{/if}}
+</div>
+
