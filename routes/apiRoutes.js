@@ -38,11 +38,6 @@ module.exports = function(app) {
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         res.sendStatus(403);
-      } else {
-        res.json({
-          message: "Post created...",
-          authData
-        });
       }
     });
     db.Post.create({
@@ -51,7 +46,7 @@ module.exports = function(app) {
       corntent: req.body.corntent,
       header: req.body.header
     }).then(function(dbExample) {
-      res.json(dbExample);
+      res.json({ postMade: true });
     });
   });
 
