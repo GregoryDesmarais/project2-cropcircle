@@ -36,15 +36,15 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    submitPost: function(post, targetURL) {
+    submitPost: function(newPost, targetURL) {
       return $.ajax({
         headers: {
-          Authorization: `Bearer ${userJWT}`
+          authorization: `Bearer ${userJWT}`,
+          "Content-Type": "application/json"
         },
         type: "POST",
         url: targetURL,
-        data: JSON.stringify(post),
-        otherData: JSON.stringify(post)
+        data: JSON.stringify(newPost)
       });
     },
     getExamples: function() {

@@ -33,7 +33,8 @@ module.exports = function(app) {
   // Create a new example
   app.post("/api/posts", verifyToken, (req, res) => {
     console.log(req.body);
-    //const requestData = JSON.parse(req.body);
+    const requestData = JSON.parse(JSON.stringify(req.body));
+    console.log(requestData);
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         res.sendStatus(403);
@@ -45,10 +46,10 @@ module.exports = function(app) {
       }
     });
     db.Post.create({
-      userName: req.body.data.userName,
-      category: req.body.data.category,
-      corntent: req.body.data.corntent,
-      header: req.body.data.header
+      userName: req.body.userName,
+      category: req.body.category,
+      corntent: req.body.corntent,
+      header: req.body.header
     }).then(function(dbExample) {
       res.json(dbExample);
     });
