@@ -30,6 +30,11 @@ body{
   margin-right: 10px;
 }
 
+.accordion{
+  margin: auto;
+  max-width: 600px;
+}
+
 .commentLinkFromPost{
   font-size: 14px;
   margin-left: 5px;
