@@ -18,6 +18,29 @@ body{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.postHeaders{
+  margin-bottom: 10px;
+}
+
+.postTitle{
+  font-size: 25px;
+  margin-left: 0px;
+}
+.postLink{
+  margin-right: 10px;
+}
+
+.accordion{
+  margin: auto;
+  max-width: 600px;
+}
+
+.commentLinkFromPost{
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
 .jumbotron{
   z-index: 1;
   margin-top: 0px;
