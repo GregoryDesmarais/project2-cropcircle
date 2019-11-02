@@ -175,6 +175,14 @@ $(document).ready(function () {
 
     console.log(searchParam);
 
+    // $.ajax({
+    //   url: "http://localhost:3000/api/" + searchParam,
+    //   method: "GET"
+    // }).then((res) => {
+    //   console.log(res);
+    // });
+
+    window.location.replace("http://localhost:3000/" + searchParam);
     
   });
 
