@@ -70,6 +70,7 @@ module.exports = function(app) {
       });
     });
   });
+
   // *********All additional routes should be placed above this one.*********
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
