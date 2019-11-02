@@ -22,6 +22,10 @@ body{
   margin-bottom: 10px;
 }
 
+button, button:visited, button:hover, button:active {
+  text-decoration:none;
+}
+
 .postTitle{
   font-size: 25px;
   margin-left: 0px;
@@ -31,6 +35,7 @@ body{
   text-decoration: none;
   color: #F5FFFA;
 }
+
 
 .postLink{
   margin-right: 10px;
