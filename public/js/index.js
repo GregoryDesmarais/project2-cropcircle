@@ -250,9 +250,9 @@ $(function () {
     var port = window.location.port;
 
     if (host === "localhost") {
-      window.location.href = "http://" + host + ":" + port + "/" + searchParam;
+      window.location.href = "https://" + host + ":" + port + "/" + searchParam;
     } else {
-      window.location.href = "http://" + host + "/" + searchParam;
+      window.location.href = "https://" + host + "/" + searchParam;
     }
 
   });
@@ -264,7 +264,7 @@ $(function () {
     API.getExamples(`/api/user/${paramId}`).then(data => {
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
       $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
       $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
       $("#userInfoModal").modal("toggle");
