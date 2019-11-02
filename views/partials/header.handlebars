@@ -41,8 +41,9 @@
             </li>
         </ul>
         <form class="form-inline">
-        
-            <input type="search" class="form-control" cols='80' rows="1" id="searchBar" placeholder="Ask Us About Our Cobbs">
+
+            <input type="search" class="form-control" cols='80' rows="1" id="searchbar"
+                placeholder="Ask Us About Our Cobbs">
 
             <button class="btn btn-outline-success my-2 my-sm-0 main-sub-btn" type="submit">Search</button>
         </form>
@@ -57,11 +58,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logInModal">Log In</a>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#registerAccountModal">Register</a>
-                <a class="dropdown-item" href="#">Sign Out</a>
+                <a class="dropdown-item" href="#" id="signOut">Sign Out</a>
             </div>
         </li>
     </ul>
 </nav>
+
 
 <div class="modal" id="logInModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -84,8 +86,8 @@
                         <input type="password" class="form-control col-10" id="logInPassword" placeholder="Password">
                     </div>
                     <p class="logInErrorMessage">One or more fields invalid</p>
-                    <button type="submit" class="btn btn-primary" id="logInAccount">Log In</button>
                 </form>
+                <button class="btn btn-primary" id="logInAccount">Log In</button>
             </div>
         </div>
     </div>
@@ -118,12 +120,13 @@
                     </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">I agree to the adhere to CropCircle's rules and conditions.</label>
+                        <label class="form-check-label" for="exampleCheck1">I agree to the adhere to CropCircle's rules
+                            and conditions.</label>
                     </div>
                     <p class="newUserErrorMessage userAlreadyExists">That user name has already been taken</p>
                     <p class="newUserErrorMessage invalidField">One or more fields invalid</p>
-                    <button type="submit" class="btn btn-primary" id="submitAccount">Submit</button>
                 </form>
+                <button class="btn btn-primary" id="submitAccount">Submit</button>
             </div>
         </div>
     </div>

@@ -33,28 +33,29 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/posts", verifyToken, (req, res) => {
+    console.log(req.body);
+    const requestData = JSON.parse(JSON.stringify(req.body));
+    console.log(requestData);
     jwt.verify(req.token, "secretkey", (err, authData) => {
+      console.log(authData);
       if (err) {
         res.sendStatus(403);
-      } else {
-        res.json({
-          message: "Post created...",
-          authData
-        });
       }
     });
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+    db.Post.create({
+      userName: req.body.userName,
+      category: req.body.category,
+      corntent: req.body.corntent,
+      header: req.body.header,
+      UserId: req.body.UserId
+    }).then(function(dbExample) {
+      console.log(dbExample);
+      res.json({ postMade: true });
     });
   });
 
   app.post("/api/login", (req, res) => {
     console.log(req.body);
-    // const user = {
-    //   id: 1,
-    //   username: "charles",
-    //   email: "charles@gmail.com"
-    // };
     db.User.findOne({
       where: {
         userName: req.body.userName,

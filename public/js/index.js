@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 $(function () {
   // Get references to page elements
+  const $newPostButton = $("#newPostBtn");
+  const $submitNewPost = $("#submitNewPostBtn");
   const $exampleText = $("#example-text");
   const $exampleDescription = $("#example-description");
   const $submitBtn = $("#submit");
@@ -12,9 +14,17 @@ $(function () {
   const $userName = $("#logInUserName");
   const $userPass = $("#logInPassword");
   const $userLogInButton = $("#logInAccount");
+  const $signOutButton = $("#signOut");
+  const $newPostContent = $("#newPostContent");
+  const $newPostTitle = $("#newPostTitle");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
-
+  let userJWT;
+  let category;
+  if (userInformation !== null) {
+    userJWT = userInformation.data[1];
+  }
+  console.log(userJWT);
   // The API object contains methods for each kind of request we'll make
   var API = {
     postRequest: function (example, targetURL) {
@@ -27,7 +37,18 @@ $(function () {
         data: JSON.stringify(example)
       });
     },
-    getExamples: function () {
+    submitPost: function(newPost, targetURL) {
+      return $.ajax({
+        headers: {
+          authorization: `Bearer ${userJWT}`,
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: targetURL,
+        data: JSON.stringify(newPost)
+      });
+    },
+    getExamples: function() {
       return $.ajax({
         url: targetURL,
         type: "GET"
@@ -131,7 +152,8 @@ $(function () {
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function (data) {
+      API.postRequest(newUser, "/api/newUser").then(function(data) {
+        console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
           $(".newUserErrorMessage").hide();
@@ -148,7 +170,12 @@ $(function () {
     }
   };
 
-  const userLogIn = function () {
+  const userLogOut = function() {
+    sessionStorage.setItem("cornHubUser", null);
+    location.reload();
+  };
+
+  const userLogIn = function() {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -158,7 +185,34 @@ $(function () {
     API.postRequest(user, "/api/login").then(data => {
       userInformation = data;
       sessionStorage.setItem("cornHubUser", JSON.stringify(data));
+      userJWT = data.data[1];
+      $(".close").trigger("click");
     });
+  };
+
+  const newPostModal = function() {
+    category = $(this).data("category");
+    $("#newPostModal").modal("toggle");
+  };
+
+  const submitNewPost = function() {
+    const newPost = {
+      userName: userInformation.data[0].userName,
+      category: category,
+      corntent: $newPostContent.val().trim(),
+      header: $newPostTitle.val().trim(),
+      UserId: userInformation.data[0].id
+    };
+    console.log(newPost);
+    if (userInformation === null) {
+      console.log("you ain't logged in dawg");
+    } else {
+      API.submitPost(newPost, "/api/posts").then(function(data) {
+        if (data.postMade) {
+          location.reload();
+        }
+      });
+    }
   };
 
   // Add event listeners to the submit and delete buttons
@@ -166,6 +220,9 @@ $(function () {
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
   $newUserSubmit.on("click", createNewUser);
   $userLogInButton.on("click", userLogIn);
+  $signOutButton.on("click", userLogOut);
+  $newPostButton.on("click", newPostModal);
+  $submitNewPost.on("click", submitNewPost);
 });
 $(document).ready(function () {
 

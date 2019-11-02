@@ -10,6 +10,10 @@ body{
  width: 500px;
 }
 
+.newPostTextArea{
+  height: 300px;
+}
+
 .card-title{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
