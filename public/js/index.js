@@ -19,6 +19,7 @@ $(function () {
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
   const $accordion = $("#accordion");
+  const $accountInfoBtn = $("#accountInfo");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -29,10 +30,16 @@ $(function () {
     if (userInformation !== null) {
       userJWT = userInformation.data[1];
       $(".accountInfo").html(userInformation.data[0].userName);
+      $("#signIn").hide();
+      $("#signUp").hide();
+      $("#signOut").show();
+    } else {
+      $("#signIn").show();
+      $("#signUp").show();
+      $("#signOut").hide();
     }
   };
 
-  console.log(userJWT);
   // The API object contains methods for each kind of request we'll make
   var API = {
     postRequest: function (example, targetURL) {
@@ -225,6 +232,19 @@ $(function () {
     }
   };
 
+  const getUserInformation = userToBeQueried => {
+    console.log(userToBeQueried);
+    API.getExamples(`/api/user/${userToBeQueried}`).then(data => {
+      console.log(data);
+      $("#getInfoUserName").html(`${data.userName}`);
+      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
+      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
+      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
+      console.log("this is running");
+      $("#userInfoModal").modal("toggle");
+    });
+  };
+
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
@@ -233,6 +253,9 @@ $(function () {
   $signOutButton.on("click", userLogOut);
   $newPostButton.on("click", newPostModal);
   $submitNewPost.on("click", submitNewPost);
+  $accountInfoBtn.on("click", () => {
+    getUserInformation(userInformation.data[0].id);
+  });
 
   $(".main-sub-btn").on("click", (searchParam) => {
     event.preventDefault();
@@ -262,19 +285,13 @@ $(function () {
     event.preventDefault();
     console.log(event.target.name);
     const paramId = event.target.name;
-    API.getExamples(`/api/user/${paramId}`).then(data => {
-      console.log(data);
-      $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
-      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
-      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
-      $("#userInfoModal").modal("toggle");
-    });
+    getUserInformation(paramId);
   });
 
   initialize();
   
 });
+
 // getExamples: function() {
 //   return $.ajax({
 //     url: targetURL,
