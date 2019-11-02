@@ -19,7 +19,9 @@ $(function () {
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
   const $accordion = $("#accordion");
+  const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
+  const $newCommentSubmit = $("#submitNewCommentBtn");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -233,15 +235,17 @@ $(function () {
 
   const submitNewComment = function () {
     const newComment = {
+      post: $("#newCommentBtn").data("post"),
       userName: userInformation.data[0].userName,
-      corntent: $newPostContent.val().trim(),
-      UserId: userInformation.data[0].id
+      corntent: $newCommentContent.val().trim(),
+      UserId: userInformation.data[0].id, 
+      category: $("#newCommentBtn").data("category"),
     };
     console.log(newComment);
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newComment, "/api/posts").then(function (data) {
+      API.submitPost(newComment, "/api/comment").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -256,6 +260,8 @@ $(function () {
   $userLogInButton.on("click", userLogIn);
   $signOutButton.on("click", userLogOut);
   $newPostButton.on("click", newPostModal);
+  $newCommentButton.on("click", newCommentModal);
+  $newCommentSubmit.on("click", submitNewComment);
   $submitNewPost.on("click", submitNewPost);
 
   $(".main-sub-btn").on("click", (searchParam) => {
