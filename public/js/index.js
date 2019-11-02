@@ -195,6 +195,7 @@ $(function () {
       sessionStorage.setItem("cornHubUser", JSON.stringify(data));
       userJWT = data.data[1];
       $(".close").trigger("click");
+      initialize();
     });
 
   };
