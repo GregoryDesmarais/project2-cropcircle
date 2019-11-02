@@ -251,19 +251,21 @@ $(function () {
   });
 
 
-});
-$accordion.on("click", ".getUserInfo", event => {
-  event.preventDefault();
-  console.log(event.target.name);
-  const paramId = event.target.name;
-  API.getExamples(`/api/user/${paramId}`).then(data => {
-    console.log(data);
-    $("#getInfoUserName").html(`${data.userName}`);
-    $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
-    $("#userInfoModal").modal("toggle");
+  $accordion.on("click", ".getUserInfo", event => {
+    event.preventDefault();
+    console.log(event.target.name);
+    const paramId = event.target.name;
+    API.getExamples(`/api/user/${paramId}`).then(data => {
+      console.log(data);
+      $("#getInfoUserName").html(`${data.userName}`);
+      $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
+      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
+      $("#userInfoModal").modal("toggle");
+    });
   });
+  
 });
-
 // getExamples: function() {
 //   return $.ajax({
 //     url: targetURL,
