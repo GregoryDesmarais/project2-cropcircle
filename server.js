@@ -1,8 +1,10 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
+var moment = require("moment");
 var db = require("./models");
+
+moment().format();
 
 var app = express();
 var PORT = process.env.PORT || 3000;
