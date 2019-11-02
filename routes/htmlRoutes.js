@@ -48,8 +48,9 @@ module.exports = function(app) {
     db.Post.findAll({ where: { category: req.params.category } }).then(function(
       posts
     ) {
+      const filteredPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
       res.render("categories", {
-        post: posts, 
+        post: filteredPosts, 
         category: req.params.category
       });
     });
