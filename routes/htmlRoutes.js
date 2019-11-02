@@ -58,14 +58,15 @@ module.exports = function(app) {
 
   //Beginnings of grabbing all comments for a post. "Should" grab all comments where PostId = the post parameter number.
   app.get("/:category/:post", function(req, res) {
-    db.Post.findAll({ where: { id: req.params.post } }).then(function(post) {
+    db.Post.findAll({ where: { id: req.params.post } }).then(function() {
       db.Comment.findAll({
         where: {
           PostId: req.params.post
         }
       }).then(function(comments) {
         res.render("post", {
-          post: post,
+          category: req.params.category,
+          post: req.params.post,
           comments: comments
         });
       });
