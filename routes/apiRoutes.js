@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
 var db = require("../models");
 const jwt = require("jsonwebtoken");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  // Get all categories
+  app.get("/api/:category", function(req, res) {
+    db.Post.findAll({ where: { category: req.params.category }}).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
