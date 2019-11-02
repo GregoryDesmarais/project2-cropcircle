@@ -1,4 +1,6 @@
-$(function() {
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
+$(function () {
   // Get references to page elements
   const $newPostButton = $("#newPostBtn");
   const $submitNewPost = $("#submitNewPostBtn");
@@ -27,7 +29,7 @@ $(function() {
   console.log(userJWT);
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postRequest: function(example, targetURL) {
+    postRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
@@ -37,7 +39,7 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    submitPost: function(newPost, targetURL) {
+    submitPost: function (newPost, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -48,13 +50,13 @@ $(function() {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function(targetURL) {
+    getExamples: function (targetURL) {
       return $.ajax({
         url: targetURL,
         type: "GET"
       });
     },
-    deleteExample: function(id) {
+    deleteExample: function (id) {
       return $.ajax({
         url: `${targetURL}/${id}`,
         type: "DELETE"
@@ -63,9 +65,9 @@ $(function() {
   };
 
   // refreshExamples gets new examples from the db and repopulates the list
-  var refreshExamples = function() {
-    API.getExamples().then(function(data) {
-      var $examples = data.map(function(example) {
+  var refreshExamples = function () {
+    API.getExamples().then(function (data) {
+      var $examples = data.map(function (example) {
         var $a = $("<a>")
           .text(example.text)
           .attr("href", "/example/" + example.id);
@@ -93,7 +95,7 @@ $(function() {
 
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  var handleFormSubmit = function(event) {
+  var handleFormSubmit = function (event) {
     event.preventDefault();
 
     var example = {
@@ -106,7 +108,7 @@ $(function() {
       return;
     }
 
-    API.saveExample(example).then(function() {
+    API.saveExample(example).then(function () {
       refreshExamples();
     });
 
@@ -116,17 +118,17 @@ $(function() {
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
-  var handleDeleteBtnClick = function() {
+  var handleDeleteBtnClick = function () {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
 
-    API.deleteExample(idToDelete).then(function() {
+    API.deleteExample(idToDelete).then(function () {
       refreshExamples();
     });
   };
 
-  const createNewUser = function() {
+  const createNewUser = function () {
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -152,7 +154,7 @@ $(function() {
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function(data) {
+      API.postRequest(newUser, "/api/newUser").then(function (data) {
         console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
@@ -170,12 +172,12 @@ $(function() {
     }
   };
 
-  const userLogOut = function() {
+  const userLogOut = function () {
     sessionStorage.setItem("cornHubUser", null);
     location.reload();
   };
 
-  const userLogIn = function() {
+  const userLogIn = function () {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -190,12 +192,12 @@ $(function() {
     });
   };
 
-  const newPostModal = function() {
+  const newPostModal = function () {
     category = $(this).data("category");
     $("#newPostModal").modal("toggle");
   };
 
-  const submitNewPost = function() {
+  const submitNewPost = function () {
     const newPost = {
       userName: userInformation.data[0].userName,
       category: category,
@@ -207,7 +209,7 @@ $(function() {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newPost, "/api/posts").then(function(data) {
+      API.submitPost(newPost, "/api/posts").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -223,16 +225,42 @@ $(function() {
   $signOutButton.on("click", userLogOut);
   $newPostButton.on("click", newPostModal);
   $submitNewPost.on("click", submitNewPost);
-  $accordion.on("click", ".getUserInfo", event => {
+
+  $(".main-sub-btn").on("click", (searchParam) => {
     event.preventDefault();
-    console.log(event.target.name);
-    const paramId = event.target.name;
-    API.getExamples(`/api/user/${paramId}`).then(data => {
-      console.log(data);
-      $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
-      $("#userInfoModal").modal("toggle");
-    });
+
+    var searchParam = $("#searchBar").val().trim();
+
+    console.log(searchParam);
+
+    // $.ajax({
+    //   url: "http://localhost:3000/api/" + searchParam,
+    //   method: "GET"
+    // }).then((res) => {
+    //   console.log(res);
+    // });
+    var host = window.location.hostname;
+    var port = window.location.port;
+
+    if (host === "localhost") {
+      window.location.href = "http://" + host + ":" + port + "/" + searchParam;
+    } else {
+      window.location.href = "http://" + host + "/" + searchParam;
+    }
+
+  });
+
+
+});
+$accordion.on("click", ".getUserInfo", event => {
+  event.preventDefault();
+  console.log(event.target.name);
+  const paramId = event.target.name;
+  API.getExamples(`/api/user/${paramId}`).then(data => {
+    console.log(data);
+    $("#getInfoUserName").html(`${data.userName}`);
+    $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+    $("#userInfoModal").modal("toggle");
   });
 });
 
