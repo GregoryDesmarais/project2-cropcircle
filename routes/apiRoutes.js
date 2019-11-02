@@ -114,6 +114,21 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/comment", (req,res) => {
+    console.log(req.body);
+    let comment = req.body;
+    data = {
+      PostId: comment.post,
+      userName: comment.userName, 
+      corntent: comment.corntent, 
+      UserId: comment.UserId, 
+      category: comment.category
+    };
+    db.Comment.create(data).then(() => {
+      res.json({ postMade: true });
+    });
+  });
+
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(

@@ -19,6 +19,9 @@ $(function () {
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
   const $accordion = $("#accordion");
+  const $newCommentButton = $("#newCommentBtn");
+  const $newCommentContent = $("#newCommentContent");
+  const $newCommentSubmit = $("#submitNewCommentBtn");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -225,6 +228,31 @@ $(function () {
     }
   };
 
+  const newCommentModal = function () {
+    post = $(this).data("post");
+    $("#newCommentModal").modal("toggle");
+  };
+
+  const submitNewComment = function () {
+    const newComment = {
+      post: $("#newCommentBtn").data("post"),
+      userName: userInformation.data[0].userName,
+      corntent: $newCommentContent.val().trim(),
+      UserId: userInformation.data[0].id, 
+      category: $("#newCommentBtn").data("category"),
+    };
+    console.log(newComment);
+    if (userInformation === null) {
+      console.log("you ain't logged in dawg");
+    } else {
+      API.submitPost(newComment, "/api/comment").then(function (data) {
+        if (data.postMade) {
+          location.reload();
+        }
+      });
+    }
+  };
+
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
@@ -232,6 +260,8 @@ $(function () {
   $userLogInButton.on("click", userLogIn);
   $signOutButton.on("click", userLogOut);
   $newPostButton.on("click", newPostModal);
+  $newCommentButton.on("click", newCommentModal);
+  $newCommentSubmit.on("click", submitNewComment);
   $submitNewPost.on("click", submitNewPost);
 
   $(".main-sub-btn").on("click", (searchParam) => {
