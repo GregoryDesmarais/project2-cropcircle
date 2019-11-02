@@ -37,7 +37,7 @@ $(function () {
         data: JSON.stringify(example)
       });
     },
-    submitPost: function(newPost, targetURL) {
+    submitPost: function (newPost, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -48,7 +48,7 @@ $(function () {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function() {
+    getExamples: function () {
       return $.ajax({
         url: targetURL,
         type: "GET"
@@ -152,7 +152,7 @@ $(function () {
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function(data) {
+      API.postRequest(newUser, "/api/newUser").then(function (data) {
         console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
@@ -170,12 +170,12 @@ $(function () {
     }
   };
 
-  const userLogOut = function() {
+  const userLogOut = function () {
     sessionStorage.setItem("cornHubUser", null);
     location.reload();
   };
 
-  const userLogIn = function() {
+  const userLogIn = function () {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -190,12 +190,12 @@ $(function () {
     });
   };
 
-  const newPostModal = function() {
+  const newPostModal = function () {
     category = $(this).data("category");
     $("#newPostModal").modal("toggle");
   };
 
-  const submitNewPost = function() {
+  const submitNewPost = function () {
     const newPost = {
       userName: userInformation.data[0].userName,
       category: category,
@@ -207,7 +207,7 @@ $(function () {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newPost, "/api/posts").then(function(data) {
+      API.submitPost(newPost, "/api/posts").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -223,10 +223,9 @@ $(function () {
   $signOutButton.on("click", userLogOut);
   $newPostButton.on("click", newPostModal);
   $submitNewPost.on("click", submitNewPost);
-});
-$(document).ready(function () {
 
   $(".main-sub-btn").on("click", (searchParam) => {
+    event.preventDefault();
 
     var searchParam = $("#searchBar").val().trim();
 
@@ -238,12 +237,16 @@ $(document).ready(function () {
     // }).then((res) => {
     //   console.log(res);
     // });
+    var host = window.location.hostname;
+    var port = window.location.port;
 
-    window.location.replace("http://localhost:3000/" + searchParam);
-    
+    if (host === "localhost") {
+      window.location.href = "http://" + host + ":" + port + "/" + searchParam;
+    } else {
+      window.location.href = "http://" + host + "/" + searchParam;
+    }
+
   });
 
 
-
 });
-
