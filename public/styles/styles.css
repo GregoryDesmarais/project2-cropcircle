@@ -111,10 +111,6 @@ button, button:visited, button:hover, button:active {
   margin: 0 auto;
 }
 
-.jumbotron-title{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
 .home-page-header-break{
   border: 1px grey solid;
 }
@@ -152,15 +148,6 @@ button, button:visited, button:hover, button:active {
   margin-right: 0px;
 }
 
-.rules{
-  padding-top: 20px;
-  border: 2px lightgrey solid;
-}
-
-.rules:hover{
-  border: grey 2px solid
-}
-
 .post{
   border: 2px lightgrey solid
 }
@@ -181,6 +168,7 @@ footer{
 }
 
 #homeCard{
+  background-color: white;
   margin-top:250px;
 }
     

@@ -1,3 +1,6 @@
+<button class="btn btn-primary" id="newCommentBtn" data-post="{{post}}" data-category="{{category}}">Add a comment!</button>
+
+
 {{#each post}}
 <div class="card">
   <div class="card-header">
@@ -20,3 +23,26 @@
 {{/if}}
 </div>
 
+<div class="modal" id="newCommentModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="newCommetContent">Post Body</label>
+                        <textarea class="form-control col-12 newPostTextArea" id="newCommentContent"
+                            placeholder="Comment"></textarea>
+                    </div>
+                    <p class="logInErrorMessage">One or more fields invalid</p>
+                </form>
+                <button class="btn btn-primary" id="submitNewCommentBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
