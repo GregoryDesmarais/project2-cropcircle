@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 $(function () {
   // Get references to page elements
@@ -17,6 +18,7 @@ $(function () {
   const $signOutButton = $("#signOut");
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
+  const $accordion = $("#accordion");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -48,7 +50,7 @@ $(function () {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function () {
+    getExamples: function (targetURL) {
       return $.ajax({
         url: targetURL,
         type: "GET"
@@ -250,3 +252,21 @@ $(function () {
 
 
 });
+$accordion.on("click", ".getUserInfo", event => {
+  event.preventDefault();
+  console.log(event.target.name);
+  const paramId = event.target.name;
+  API.getExamples(`/api/user/${paramId}`).then(data => {
+    console.log(data);
+    $("#getInfoUserName").html(`${data.userName}`);
+    $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+    $("#userInfoModal").modal("toggle");
+  });
+});
+
+// getExamples: function() {
+//   return $.ajax({
+//     url: targetURL,
+//     type: "GET"
+//   });
+// }

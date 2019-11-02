@@ -10,6 +10,23 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/user/:id", (req, res) => {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(data => {
+      const response = {
+        userName: data.userName,
+        memberSince: data.createdAt
+        // likes: data.likes,
+        // commentsMade: data.commentsMade,
+        // postsMade: data.postsMade
+      };
+      res.json(response);
+    });
+  });
+
   //Create a new user
   app.post("/api/newUser", (req, res) => {
     console.log(req.body);

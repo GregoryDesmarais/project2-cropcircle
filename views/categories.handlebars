@@ -1,7 +1,5 @@
 {{!-- Picks every post from this category and renders to page --}}
-
-</div>
-<button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+<!--
 <div class="container">
     {{#each post}}
     <div class="card">
@@ -10,6 +8,33 @@
         </div>
         <div class="body">
             {{corntent}}
+        </div>
+    </div>
+    {{/each}}
+</div> -->
+<button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+
+<div class="accordion" id="accordion">
+    {{#each post}}
+    <div class="card postHeaders">
+        <div class="card-header " id="heading{{id}}">
+            <h2 class="mb-0">
+                <button class="btn btn-link col-12 text-left postTitle" type="button" data-toggle="collapse"
+                    data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">
+                    {{header}}
+                </button>
+                <br>
+                <div class="commentLinkFromPost text-left col-12">
+                    <a class="postLink"href="/{{category}}/{{id}}"> Comments</a>
+                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink"href="#" name="{{UserId}}">User: {{userName}}</a>
+                </div>
+            </h2>
+        </div>
+
+        <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}" data-parent="#accordionExample">
+            <div class="card-body">
+                {{corntent}}
+            </div>
         </div>
     </div>
     {{/each}}
@@ -28,12 +53,13 @@
                 <form>
                     <div class="form-group">
                         <label for="postTitle">Title</label>
-                        <input type="text" class="form-control col-12" rows="9" id="newPostTitle" aria-describedby="userName"
-                            placeholder="Post Title">
+                        <input type="text" class="form-control col-12" rows="9" id="newPostTitle"
+                            aria-describedby="userName" placeholder="Post Title">
                     </div>
                     <div class="form-group">
                         <label for="newPostContent">Post Body</label>
-                        <textarea class="form-control col-12 newPostTextArea" id="newPostContent" placeholder="Post"></textarea>
+                        <textarea class="form-control col-12 newPostTextArea" id="newPostContent"
+                            placeholder="Post"></textarea>
                     </div>
                     <p class="logInErrorMessage">One or more fields invalid</p>
                 </form>
