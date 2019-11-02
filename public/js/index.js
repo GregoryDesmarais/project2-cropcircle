@@ -19,6 +19,7 @@ $(function () {
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
   const $accordion = $("#accordion");
+  const $newCommentContent = $("#newCommentContent");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -217,6 +218,29 @@ $(function () {
       console.log("you ain't logged in dawg");
     } else {
       API.submitPost(newPost, "/api/posts").then(function (data) {
+        if (data.postMade) {
+          location.reload();
+        }
+      });
+    }
+  };
+
+  const newCommentModal = function () {
+    post = $(this).data("post");
+    $("#newCommentModal").modal("toggle");
+  };
+
+  const submitNewComment = function () {
+    const newComment = {
+      userName: userInformation.data[0].userName,
+      corntent: $newPostContent.val().trim(),
+      UserId: userInformation.data[0].id
+    };
+    console.log(newComment);
+    if (userInformation === null) {
+      console.log("you ain't logged in dawg");
+    } else {
+      API.submitPost(newComment, "/api/posts").then(function (data) {
         if (data.postMade) {
           location.reload();
         }

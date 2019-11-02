@@ -64,6 +64,7 @@ module.exports = function(app) {
         }
       }).then(function(comments) {
         res.render("post", {
+          category: req.params.category,
           post: post,
           comments: comments
         });
