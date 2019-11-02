@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 $(function () {
@@ -23,9 +24,15 @@ $(function () {
   console.log(userInformation);
   let userJWT;
   let category;
-  if (userInformation !== null) {
-    userJWT = userInformation.data[1];
-  }
+
+
+  const initialize = () => {
+    if (userInformation !== null) {
+      userJWT = userInformation.data[1];
+      $(".accountInfo").html(userInformation.data[0].userName);
+    }
+  };
+
   console.log(userJWT);
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -190,6 +197,7 @@ $(function () {
       userJWT = data.data[1];
       $(".close").trigger("click");
     });
+
   };
 
   const newPostModal = function () {
@@ -243,13 +251,12 @@ $(function () {
     var port = window.location.port;
 
     if (host === "localhost") {
-      window.location.href = "http://" + host + ":" + port + "/" + searchParam;
+      window.location.href = "https://" + host + ":" + port + "/" + searchParam;
     } else {
-      window.location.href = "http://" + host + "/" + searchParam;
+      window.location.href = "https://" + host + "/" + searchParam;
     }
 
   });
-
 
   $accordion.on("click", ".getUserInfo", event => {
     event.preventDefault();
@@ -258,12 +265,14 @@ $(function () {
     API.getExamples(`/api/user/${paramId}`).then(data => {
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
       $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
       $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
       $("#userInfoModal").modal("toggle");
     });
   });
+
+  initialize();
   
 });
 // getExamples: function() {

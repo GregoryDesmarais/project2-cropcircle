@@ -22,10 +22,21 @@ body{
   margin-bottom: 10px;
 }
 
+button, button:visited, button:hover, button:active {
+  text-decoration:none;
+}
+
 .postTitle{
   font-size: 25px;
   margin-left: 0px;
 }
+
+.postTitle:hover{
+  text-decoration: none;
+  color: #F5FFFA;
+}
+
+
 .postLink{
   margin-right: 10px;
 }
@@ -33,6 +44,29 @@ body{
 .accordion{
   margin: auto;
   max-width: 600px;
+}
+
+.postTitle{
+  color: black;
+}
+
+.postLink{
+  color: #F5FFFA;
+}
+
+.postLink:hover{
+  text-decoration: none;
+  color: black;
+  
+}
+
+.card{
+  background-color: darkgrey;
+}
+
+.accordion-collapse{
+  background-color: #696969;
+  color: #F5FFFA;
 }
 
 .commentLinkFromPost{
