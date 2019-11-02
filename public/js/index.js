@@ -23,9 +23,15 @@ $(function () {
   console.log(userInformation);
   let userJWT;
   let category;
-  if (userInformation !== null) {
-    userJWT = userInformation.data[1];
-  }
+
+
+  const initialize = () => {
+    if (userInformation !== null) {
+      userJWT = userInformation.data[1];
+      $(".accountInfo").html(userInformation.data[0].userName);
+    }
+  };
+
   console.log(userJWT);
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -190,6 +196,7 @@ $(function () {
       userJWT = data.data[1];
       $(".close").trigger("click");
     });
+
   };
 
   const newPostModal = function () {
@@ -249,20 +256,22 @@ $(function () {
     }
 
   });
-
-
-});
-$accordion.on("click", ".getUserInfo", event => {
-  event.preventDefault();
-  console.log(event.target.name);
-  const paramId = event.target.name;
-  API.getExamples(`/api/user/${paramId}`).then(data => {
-    console.log(data);
-    $("#getInfoUserName").html(`${data.userName}`);
-    $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
-    $("#userInfoModal").modal("toggle");
+  $accordion.on("click", ".getUserInfo", event => {
+    event.preventDefault();
+    console.log(event.target.name);
+    const paramId = event.target.name;
+    API.getExamples(`/api/user/${paramId}`).then(data => {
+      console.log(data);
+      $("#getInfoUserName").html(`${data.userName}`);
+      $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+      $("#userInfoModal").modal("toggle");
+    });
   });
+
+  initialize();
 });
+
+
 
 // getExamples: function() {
 //   return $.ajax({
