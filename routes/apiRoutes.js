@@ -11,19 +11,36 @@ module.exports = function(app) {
   });
 
   app.get("/api/user/:id", (req, res) => {
+    let userPosts;
+    let userComments;
+    let userID = req.params.id;
     db.User.findOne({
       where: {
-        id: req.params.id
+        id: userID
       }
     }).then(data => {
-      const response = {
-        userName: data.userName,
-        memberSince: data.createdAt
-        // likes: data.likes,
-        // commentsMade: data.commentsMade,
-        // postsMade: data.postsMade
-      };
-      res.json(response);
+      db.Post.findAll({
+        where:{
+          UserId: userID
+        }
+      }).then(postData => {
+        userPosts = postData.length;
+        db.Comment.findAll({
+          where: {
+            UserId: userID
+          }
+        }).then(commentData => {
+          userComments = commentData.length;
+          const response = {
+            userName: data.userName,
+            memberSince: data.createdAt,
+            // likes: data.likes,
+            commentsMade: userComments,
+            postsMade: userPosts
+          };
+          res.json(response);
+        });
+      });
     });
   });
 
