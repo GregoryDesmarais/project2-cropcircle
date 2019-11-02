@@ -256,6 +256,7 @@ $(function () {
     }
 
   });
+
   $accordion.on("click", ".getUserInfo", event => {
     event.preventDefault();
     console.log(event.target.name);
@@ -264,15 +265,15 @@ $(function () {
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
       $("#getInfoUserTime").html(`User Since ${data.memberSince}`);
+      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
+      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
       $("#userInfoModal").modal("toggle");
     });
   });
 
   initialize();
+  
 });
-
-
-
 // getExamples: function() {
 //   return $.ajax({
 //     url: targetURL,
