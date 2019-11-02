@@ -250,7 +250,7 @@ $(function () {
     var port = window.location.port;
 
     if (host === "localhost") {
-      window.location.href = "https://" + host + ":" + port + "/" + searchParam;
+      window.location.href = "http://" + host + ":" + port + "/" + searchParam;
     } else {
       window.location.href = "https://" + host + "/" + searchParam;
     }
