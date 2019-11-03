@@ -97,11 +97,13 @@ module.exports = function(app) {
       }
     }).then(data => {
       console.log(data.dataValues);
+      const favorites = data.favorites.split(",");
       user = {
         id: data.id,
         userName: data.dataValues.userName,
         email: data.dataValues.email,
-        createdAt: data.dataValues.createdAt
+        createdAt: data.dataValues.createdAt, 
+        favorites: favorites
       };
       jwt.sign({ user }, "secretkey", (err, token) => {
         if (err) {

@@ -32,13 +32,24 @@ $(function () {
   const initialize = () => {
     if (userInformation !== null) {
       userJWT = userInformation.data[1];
+      const favorites = userInformation.data[0].favorites.sort();
+      let navBarFavorites = "";
       $(".accountInfo").html(userInformation.data[0].userName);
       $("#signIn").hide();
       $("#signUp").hide();
+      $("#accountInfo").show();
       $("#signOut").show();
+      // <a class="dropdown-item" href="/"><i class="d-inline fas fa-home"></i>
+      //                   <p class="d-inline dropdownLabel">Home</p>
+      //               </a>
+      favorites.forEach(favorite => {
+        navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite}</p></a>`;
+      });
+      $("#favoritesDropdown").html(navBarFavorites);
     } else {
       $("#signIn").show();
       $("#signUp").show();
+      $("#accountInfo").hide();
       $("#signOut").hide();
     }
   };
