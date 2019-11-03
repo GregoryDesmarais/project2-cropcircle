@@ -12,70 +12,74 @@
     </div>
     {{/each}}
 </div> -->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4 cat-name"></h1>
-        <button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
-        <button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Favorite this
-            Category</button>
+<div class="main">
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 cat-name text-center">Welcome to {{category}}</h1>
+            <button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+            <button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Favorite this
+                Category</button>
+        </div>
     </div>
-</div>
 
 
 
 
-<div class="accordion" id="accordion">
-    {{#each post}}
-    <div class="card postHeaders">
-        <div class="card-header " id="heading{{id}}">
-            <h2 class="mb-0">
-                <button class="btn btn-link col-12 text-center postTitle" type="button" data-toggle="collapse"
-                    data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">
-                    {{header}}
-                </button>
-                <br>
-                <div class="commentLinkFromPost text-right col-12">
-                    <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
-                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
-                            src="/images/alien.png"> {{userName}}</a>
+    <div class="accordion" id="accordion">
+        {{#each post}}
+        <div class="card postHeaders">
+            <div class="card-header " id="heading{{id}}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link col-12 text-center postTitle" type="button" data-toggle="collapse"
+                        data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">
+                        {{header}}
+                    </button>
+                    <br>
+                    <div class="commentLinkFromPost text-right col-12">
+                        <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+                        <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                                src="/images/alien.png"> {{userName}}</a>
+                    </div>
+                </h2>
+            </div>
+
+            <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}"
+                data-parent="#accordionExample">
+                <div class="card-body">
+                    {{corntent}}
                 </div>
-            </h2>
-        </div>
-
-        <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}"
-            data-parent="#accordionExample">
-            <div class="card-body">
-                {{corntent}}
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>
 
-<div class="modal" id="newPostModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create New Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="postTitle">Title</label>
-                        <input type="text" class="form-control col-12" rows="9" id="newPostTitle"
-                            aria-describedby="userName" placeholder="Post Title">
-                    </div>
-                    <div class="form-group">
-                        <label for="newPostContent">Post Body</label>
-                        <textarea class="form-control col-12 newPostTextArea" id="newPostContent"
-                            placeholder="Post"></textarea>
-                    </div>
-                    <p class="logInErrorMessage">One or more fields invalid</p>
-                </form>
-                <button class="btn btn-primary" id="submitNewPostBtn">Submit</button>
+    <div class="modal" id="newPostModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="postTitle">Title</label>
+                            <input type="text" class="form-control col-12" rows="9" id="newPostTitle"
+                                aria-describedby="userName" placeholder="Post Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPostContent">Post Body</label>
+                            <textarea class="form-control col-12 newPostTextArea" id="newPostContent"
+                                placeholder="Post"></textarea>
+                        </div>
+                        <p class="logInErrorMessage">One or more fields invalid</p>
+                    </form>
+                    <button class="btn btn-primary" id="submitNewPostBtn">Submit</button>
+                </div>
             </div>
         </div>
     </div>

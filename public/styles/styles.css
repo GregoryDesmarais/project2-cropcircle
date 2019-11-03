@@ -156,15 +156,37 @@ button, button:visited, button:hover, button:active {
   border: grey 2px solid
 }
 
+.wrap{
+  min-height:100%;
+  margin-bottom: 100px;
+}
+
+.main{
+  padding-bottom: 125px;
+  overflow: auto
+}
+
+.left-column{
+  height: 125px;
+}
+
+.right-column{
+  height: 125px;
+}
+
+.footer-ul{
+  margin-bottom: 0px;
+}
+
 footer{
-  position: fixed;
-  margin-top: 500px;
+  position: relative;
+  margin-top: -125px;
   font-size: 10px;
-  height: 20%;
-  bottom: 0;
+  height: 125px;
   left: 0;
   width: 100%;
   background-color: #56D376;
+  bottom: 0;
 }
 
 #homeCard{
