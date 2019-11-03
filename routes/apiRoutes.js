@@ -45,12 +45,11 @@ module.exports = function(app) {
   });
 
   app.put("/api/updateFavorites", (req, res) => {
-    if (req.body.alreadyFavorited) {
-      db.User.update({
-        favorites : req.body.newFavorites},
-      {where: req.body.UserId}
-      ).then(result => res.json(result));
-    }
+    console.log("this is runnning");
+    db.User.update({
+      favorites : req.body.newFavorites},
+    {where: { id: req.body.UserId}}
+    ).then(result => res.json(result));
   });
 
   //Create a new user

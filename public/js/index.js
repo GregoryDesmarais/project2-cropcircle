@@ -24,6 +24,7 @@ $(function () {
   const $newCommentContent = $("#newCommentContent");
   const $newCommentSubmit = $("#submitNewCommentBtn");
   const $favoriteCategoryBtn = $("#favoriteThisCategory");
+  const categoryValue = $favoriteCategoryBtn.data("category");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -36,18 +37,20 @@ $(function () {
   const initialize = () => {
     if (userInformation !== null) {
       userJWT = userInformation.data[1];
-      const favorites = userInformation.data[0].favorites.sort();
-      let navBarFavorites = "";
+      
       $(".accountInfo").html(userInformation.data[0].userName);
       $("#signIn").hide();
       $("#signUp").hide();
       $("#accountInfo").show();
       $("#signOut").show();
+      const favorites = userInformation.data[0].favorites.sort();
+      console.log(favorites);
+      let navBarFavorites = "";
       favorites.forEach(favorite => {
         navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite.capitalize()}</p></a>`;
       });
       $("#favoritesDropdown").html(navBarFavorites);
-      const categoryValue = $favoriteCategoryBtn.data("category");
+      console.log(categoryValue);
       favorites.includes(categoryValue) ? $favoriteCategoryBtn.attr("data-favorited", true) : $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "red", "border" : "1px red solid" });
     } else {
       $("#signIn").show();
@@ -299,21 +302,27 @@ $(function () {
 
   const addNewFavorite = () => {
     const user = userInformation.data[0];
-    const unfavoritedItem = user.favorites.indexOf($favoriteCategoryBtn.data("category"));
+    const unfavoritedItem = user.favorites.indexOf(categoryValue);
     if ($favoriteCategoryBtn.data("favorited")) {
-      user.favorites.splice(unfavoritedItem, 1);
+      userInformation.data[0].favorites.splice(unfavoritedItem, 1);
+      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "green", "border" : "1px yellow solid" });
+      // initialize();
       console.log(user.favorites);
-    }// else {
-    //   user.favorites.push($favoriteCategoryBtn.data("category"));
-    // }
-    // const updateFavorite = {
-    //   UserId: user.id,
-    //   newFavorites: user.favorites.join(",")
-    //};
+    } else if (!($favoriteCategoryBtn.data("favorited"))) {
+      userInformation.data[0].favorites.push(categoryValue);
+      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" });
+      // initialize();
+    }
+    const updateFavorite = {
+      UserId: user.id,
+      newFavorites: user.favorites.join(",")
+    };
     
-    // API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
-    //   console.log(data);
-    // });
+    API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
+      console.log(data);
+    });
     
   };
 
