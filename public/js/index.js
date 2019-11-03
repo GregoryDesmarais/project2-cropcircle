@@ -28,6 +28,9 @@ $(function () {
   let userJWT;
   let category;
 
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
 
   const initialize = () => {
     if (userInformation !== null) {
@@ -43,7 +46,7 @@ $(function () {
       //                   <p class="d-inline dropdownLabel">Home</p>
       //               </a>
       favorites.forEach(favorite => {
-        navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite}</p></a>`;
+        navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite.capitalize()}</p></a>`;
       });
       $("#favoritesDropdown").html(navBarFavorites);
     } else {
