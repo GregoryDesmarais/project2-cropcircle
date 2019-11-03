@@ -172,3 +172,13 @@ footer{
   margin-top:250px;
   margin-bottom: 500px;
 }
+
+#newPostBtn{
+  background-color: #B1E964;
+  color: black;
+}
+
+#favoriteThisCategory{
+  background-color: #36A07C;
+  color: black;
+}
