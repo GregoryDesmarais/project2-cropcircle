@@ -365,7 +365,7 @@ $(function () {
     // });
 
     
-    //$(".cat-name").text("c/" + searchParam);
+    $(".cat-name").text("c/" + searchParam);
 
     var host = window.location.hostname;
     var port = window.location.port;
