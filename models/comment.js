@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Comment = sequelize.define("Comment", {
     userName: DataTypes.STRING,
     corntent: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     }
   });
