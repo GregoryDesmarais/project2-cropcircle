@@ -79,7 +79,7 @@ button, button:visited, button:hover, button:active {
   z-index: 1;
   margin-top: 0px;
   opacity: 90%;
-  background-color: null;
+  background-color: #0c6573;
 }
 
 .newUserErrorMessage, .logInErrorMessage{
