@@ -44,6 +44,14 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/api/updateFavorites", (req, res) => {
+    console.log("this is runnning");
+    db.User.update({
+      favorites : req.body.newFavorites},
+    {where: { id: req.body.UserId}}
+    ).then(result => res.json(result));
+  });
+
   //Create a new user
   app.post("/api/newUser", (req, res) => {
     console.log(req.body);
@@ -97,11 +105,13 @@ module.exports = function(app) {
       }
     }).then(data => {
       console.log(data.dataValues);
+      const favorites = data.favorites.split(",");
       user = {
         id: data.id,
         userName: data.dataValues.userName,
         email: data.dataValues.email,
-        createdAt: data.dataValues.createdAt
+        createdAt: data.dataValues.createdAt, 
+        favorites: favorites
       };
       jwt.sign({ user }, "secretkey", (err, token) => {
         if (err) {

@@ -23,11 +23,16 @@ $(function () {
   const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
   const $newCommentSubmit = $("#submitNewCommentBtn");
+  const $favoriteCategoryBtn = $("#favoriteThisCategory");
+  const categoryValue = $favoriteCategoryBtn.data("category");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
   let category;
 
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
 
   const initialize = () => {
     if (userInformation !== null) {
@@ -35,12 +40,29 @@ $(function () {
       $(".accountInfo").html(userInformation.data[0].userName);
       $("#signIn").hide();
       $("#signUp").hide();
+      $("#accountInfo").show();
       $("#signOut").show();
+      populateNavBar();
+      if (userInformation.data[0].favorites.includes(categoryValue)) {
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
+      } else {
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");    
+      } 
     } else {
       $("#signIn").show();
       $("#signUp").show();
+      $("#accountInfo").hide();
       $("#signOut").hide();
     }
+  };
+
+  const populateNavBar = () => {
+    let navBarFavorites = "";
+    const favorites = userInformation.data[0].favorites.sort();
+    favorites.forEach(favorite => {
+      navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite.capitalize()}</p></a>`;
+    });
+    $("#favoritesDropdown").html(navBarFavorites);
   };
 
   // The API object contains methods for each kind of request we'll make
@@ -53,6 +75,16 @@ $(function () {
         type: "POST",
         url: targetURL,
         data: JSON.stringify(example)
+      });
+    },
+    putRequest: function (example, targetURL) {
+      return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url: targetURL,
+        type: "PUT",
+        data:JSON.stringify(example)
       });
     },
     submitPost: function (newPost, targetURL) {
@@ -273,6 +305,36 @@ $(function () {
     }
   };
 
+  const addNewFavorite = () => {
+    const user = userInformation.data[0];
+    const unfavoritedItem = user.favorites.indexOf(categoryValue);
+    if (user.favorites.includes(categoryValue)) {
+      console.log("splice running");
+      userInformation.data[0].favorites.splice(unfavoritedItem, 1);
+      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");
+      populateNavBar();
+      console.log(user.favorites);
+      console.log(userInformation.data[0].favorites);
+    } else {
+      console.log("push running");
+      userInformation.data[0].favorites.push(categoryValue);
+      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+      console.log(userInformation.data[0].favorites);
+      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
+      populateNavBar();
+    }
+    const updateFavorite = {
+      UserId: user.id,
+      newFavorites: user.favorites.join(",")
+    };
+    
+    API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
+      console.log(data);
+    });
+    
+  };
+
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
@@ -283,6 +345,7 @@ $(function () {
   $newCommentButton.on("click", newCommentModal);
   $newCommentSubmit.on("click", submitNewComment);
   $submitNewPost.on("click", submitNewPost);
+  $favoriteCategoryBtn.on("click", addNewFavorite);
   $accountInfoBtn.on("click", () => {
     getUserInformation(userInformation.data[0].id);
   });
