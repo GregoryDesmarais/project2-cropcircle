@@ -23,6 +23,7 @@ $(function () {
   const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
   const $newCommentSubmit = $("#submitNewCommentBtn");
+  const $favoriteCategoryBtn = $("#favoriteThisCategory");
   let userInformation = JSON.parse(sessionStorage.getItem("cornHubUser"));
   console.log(userInformation);
   let userJWT;
@@ -42,13 +43,12 @@ $(function () {
       $("#signUp").hide();
       $("#accountInfo").show();
       $("#signOut").show();
-      // <a class="dropdown-item" href="/"><i class="d-inline fas fa-home"></i>
-      //                   <p class="d-inline dropdownLabel">Home</p>
-      //               </a>
       favorites.forEach(favorite => {
         navBarFavorites += `<a class="dropdown-item" href="/${favorite}"><p class="d-inline dropdownLabel">${favorite.capitalize()}</p></a>`;
       });
       $("#favoritesDropdown").html(navBarFavorites);
+      const categoryValue = $favoriteCategoryBtn.data("category");
+      favorites.includes(categoryValue) ? $favoriteCategoryBtn.attr("data-favorited", true) : $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "red", "border" : "1px red solid" });
     } else {
       $("#signIn").show();
       $("#signUp").show();
@@ -67,6 +67,16 @@ $(function () {
         type: "POST",
         url: targetURL,
         data: JSON.stringify(example)
+      });
+    },
+    putRequest: function (example, targetURL) {
+      return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url: targetURL,
+        type: "PUT",
+        data:JSON.stringify(example)
       });
     },
     submitPost: function (newPost, targetURL) {
@@ -287,6 +297,26 @@ $(function () {
     }
   };
 
+  const addNewFavorite = () => {
+    const user = userInformation.data[0];
+    const unfavoritedItem = user.favorites.indexOf($favoriteCategoryBtn.data("category"));
+    if ($favoriteCategoryBtn.data("favorited")) {
+      user.favorites.splice(unfavoritedItem, 1);
+      console.log(user.favorites);
+    }// else {
+    //   user.favorites.push($favoriteCategoryBtn.data("category"));
+    // }
+    // const updateFavorite = {
+    //   UserId: user.id,
+    //   newFavorites: user.favorites.join(",")
+    //};
+    
+    // API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
+    //   console.log(data);
+    // });
+    
+  };
+
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
   $exampleList.on("click", ".delete", handleDeleteBtnClick);
@@ -297,6 +327,7 @@ $(function () {
   $newCommentButton.on("click", newCommentModal);
   $newCommentSubmit.on("click", submitNewComment);
   $submitNewPost.on("click", submitNewPost);
+  $favoriteCategoryBtn.on("click", addNewFavorite);
   $accountInfoBtn.on("click", () => {
     getUserInformation(userInformation.data[0].id);
   });

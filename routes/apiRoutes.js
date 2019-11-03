@@ -44,6 +44,15 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/api/updateFavorites", (req, res) => {
+    if (req.body.alreadyFavorited) {
+      db.User.update({
+        favorites : req.body.newFavorites},
+      {where: req.body.UserId}
+      ).then(result => res.json(result));
+    }
+  });
+
   //Create a new user
   app.post("/api/newUser", (req, res) => {
     console.log(req.body);
