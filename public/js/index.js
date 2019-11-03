@@ -363,6 +363,8 @@ $(function () {
     // }).then((res) => {
     //   console.log(res);
     // });
+    $(".cat-name").text("c/" + searchParam);
+
     var host = window.location.hostname;
     var port = window.location.port;
 

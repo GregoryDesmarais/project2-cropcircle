@@ -12,8 +12,17 @@
     </div>
     {{/each}}
 </div> -->
-<button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
-<button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Favorite this Category</button>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 cat-name"></h1>
+        <button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+        <button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Favorite this
+            Category</button>
+    </div>
+</div>
+
+
+
 
 <div class="accordion" id="accordion">
     {{#each post}}
@@ -26,13 +35,15 @@
                 </button>
                 <br>
                 <div class="commentLinkFromPost text-right col-12">
-                    <a class="postLink"href="/{{category}}/{{id}}"> Comments</a>
-                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink"href="#" name="{{UserId}}"><img src="/images/alien.png"> {{userName}}</a>
+                    <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                            src="/images/alien.png"> {{userName}}</a>
                 </div>
             </h2>
         </div>
 
-        <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}" data-parent="#accordionExample">
+        <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}"
+            data-parent="#accordionExample">
             <div class="card-body">
                 {{corntent}}
             </div>
