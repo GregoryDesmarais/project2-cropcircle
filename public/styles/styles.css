@@ -178,7 +178,15 @@ footer{
   color: black;
 }
 
+#newPostBtn:hover{
+  background-color: #0D7788;
+}
+
 #favoriteThisCategory{
   background-color: #36A07C;
   color: black;
+}
+
+#favoriteThisCategory:hover{
+  background-color: #0D7788;
 }
