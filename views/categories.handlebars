@@ -41,13 +41,17 @@
                     <br>
                 </h2>
             </div>
-
             <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}"
                 data-parent="#accordionExample">
                 <div class="card-body">
                     {{corntent}}
                 </div>
             </div>
+        </div>
+        <div class="commentLinkFromPost text-right col-12">
+            <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+            <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                    src="/images/alien.png"> {{userName}}</a>
         </div>
     </div>
 
