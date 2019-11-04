@@ -274,12 +274,16 @@ $(function() {
   const getUserInformation = userToBeQueried => {
     console.log(userToBeQueried);
     API.getExamples(`/api/user/${userToBeQueried}`).then(data => {
+      let userList = "";
+      let userInfoTime = `<li class="list-group-item" id="getInfoUserTime">User Since ${moment(data.memberSince).format("MMM Do YY")}</li>`;
+      let userInfoPostsMade = `<li class="list-group-item" id="getInfoUserPostsMade">Number of Posts made: ${data.postsMade}</li>`;
+      let userInfoCommentsMade = `<li class="list-group-item" id="getInfoUserCommentsMade">Number of Comments made: ${data.commentsMade}</li>`;
+      let viewAllPosts = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
+      let viewAllComments = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
-      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
-      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
-      console.log("this is running");
+
+      $("#userInfoList").html(`${userInfoPostsMade}${viewAllPosts}${userInfoCommentsMade}${viewAllComments}${userInfoTime}`);
       $("#userInfoModal").modal("toggle");
     });
   };
