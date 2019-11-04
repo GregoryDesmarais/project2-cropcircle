@@ -44,9 +44,9 @@ $(function () {
       $("#signOut").show();
       populateNavBar();
       if (userInformation.data[0].favorites.includes(categoryValue)) {
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
       } else {
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");    
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");    
       } 
     } else {
       $("#signIn").show();
@@ -312,7 +312,7 @@ $(function () {
       console.log("splice running");
       userInformation.data[0].favorites.splice(unfavoritedItem, 1);
       sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");
+      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
       populateNavBar();
       console.log(user.favorites);
       console.log(userInformation.data[0].favorites);
@@ -321,7 +321,7 @@ $(function () {
       userInformation.data[0].favorites.push(categoryValue);
       sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
       console.log(userInformation.data[0].favorites);
-      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
+      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
       populateNavBar();
     }
     const updateFavorite = {
