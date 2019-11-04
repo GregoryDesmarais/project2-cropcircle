@@ -268,3 +268,9 @@ footer {
     background-color: #B1E964;
     color: #1A2D3E;
 }
+
+.pinkAlien {
+  animation-duration: 15s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+}
