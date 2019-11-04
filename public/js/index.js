@@ -242,8 +242,13 @@ $(function() {
   };
 
   const newPostModal = function() {
-    category = $(this).data("category");
-    $("#newPostModal").modal("toggle");
+    if (userJWT !== undefined) {
+      category = $(this).data("category");
+      $("#newPostModal").modal("toggle");
+    } else {
+      $("#logInModal").modal("toggle");
+    }
+
   };
 
   const submitNewPost = function() {
