@@ -18,6 +18,10 @@ body, html{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.category-title{
+  color: #56D376;
+}
+
 .postHeaders{
   margin-bottom: 10px;
 }
@@ -29,6 +33,7 @@ button, button:visited, button:hover, button:active {
 .postTitle{
   font-size: 25px;
   margin-left: 0px;
+  color: #1A2D3E;
 }
 
 .postTitle:hover{
@@ -39,6 +44,7 @@ button, button:visited, button:hover, button:active {
 
 .postLink{
   margin-right: 10px;
+  color: #1A2D3E;
 }
 
 .accordion{
@@ -46,27 +52,28 @@ button, button:visited, button:hover, button:active {
   max-width: 600px;
 }
 
+/* does this look ok? */
 .postTitle{
-  color: black;
+  color: #1A2D3E;
 }
 
-.postLink{
+/* .postLink{
   color: #F5FFFA;
-}
+} */
 
 .postLink:hover{
   text-decoration: none;
-  color: black;
+  color: #F5FFFA;
   
 }
 
 .card{
-  background-color: darkgrey;
+  background-color: #0d7787;
 }
 
 .accordion-collapse{
-  background-color: #696969;
-  color: #F5FFFA;
+  background-color: #b1e964;
+  color: #1a2d3e;
 }
 
 .commentLinkFromPost{
@@ -79,7 +86,7 @@ button, button:visited, button:hover, button:active {
   z-index: 1;
   margin-top: 0px;
   opacity: 90%;
-  background-color: null;
+  background-color: #0c6573;
 }
 
 .newUserErrorMessage, .logInErrorMessage{
@@ -156,19 +163,96 @@ button, button:visited, button:hover, button:active {
   border: grey 2px solid
 }
 
+.wrap{
+  min-height:100%;
+  margin-bottom: 100px;
+}
+
+.postWrap{
+  padding: 10px;
+  background-color: #56D376;
+  margin-bottom: 20px;
+}
+
+.main{
+  padding-bottom: 125px;
+  overflow: auto
+}
+
+.left-column{
+  height: 125px;
+}
+
+.right-column{
+  height: 125px;
+}
+
+.footer-ul{
+  margin-bottom: 0px;
+}
+
 footer{
-  position: fixed;
-  margin-top: 500px;
+  position: relative;
+  margin-top: -125px;
   font-size: 10px;
-  height: 20%;
-  bottom: 0;
+  height: 125px;
   left: 0;
   width: 100%;
   background-color: #56D376;
+  bottom: 0;
 }
 
 #homeCard{
   background-color: white;
   margin-top:250px;
   margin-bottom: 500px;
+}
+
+#newPostBtn{
+  background-color: #B1E964;
+  color: #1A2D3E;
+}
+
+#newPostBtn:hover{
+  background-color: #0D7788;
+}
+
+#favoriteThisCategory{
+  background-color: #36A07C;
+  color: #1A2D3E;
+}
+
+#favoriteThisCategory:hover{
+  background-color: #0D7788;
+}
+
+.main-sub-btn:hover{
+  background-color: #0D7788;
+}
+
+#submitNewPostBtn{
+  background-color: #0D7788;
+  color: #1A2D3E;
+}
+
+#submitNewPostBtn:hover{
+  background-color: #B1E964;
+}
+
+.commentLinkFromPost{
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn{
+  background-color: #0D7788;
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn:hover{
+  background-color: #B1E964;
+}
+
+#newCommentBtn{
+  background-color: #B1E964;
+  color: #1A2D3E;
 }

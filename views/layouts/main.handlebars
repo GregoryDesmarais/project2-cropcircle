@@ -7,20 +7,21 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://momentjs.com/downloads/moment.min.js"></script>
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <link rel="shortcut icon" href="/images/alien.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="shortcut icon" href="/images/alien.png" type="image/x-icon"/>
+  <link rel="stylesheet" href="animate.min.css">
   <title>Home Page</title>
 </head>
 
 <body>
   {{> header}}
-  {{{body}}}
+  <div class="wrap">
+    {{{body}}}
+  </div>
+  
   {{> footer}}
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+  
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
