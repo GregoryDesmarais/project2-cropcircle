@@ -306,10 +306,10 @@ $(function () {
     }
   };
 
-  const addNewFavorite = () => {
-    const user = userInformation.data[0];
-    const unfavoritedItem = user.favorites.indexOf(categoryValue);
-    if (userJWT !== null) {
+  const addNewFavorite = () => {   
+    if (userJWT !== undefined) {
+      const user = userInformation.data[0];
+      const unfavoritedItem = user.favorites.indexOf(categoryValue);
       if (user.favorites.includes(categoryValue)) {
         console.log("splice running");
         userInformation.data[0].favorites.splice(unfavoritedItem, 1);
@@ -335,10 +335,8 @@ $(function () {
         console.log(data);
       });
     } else {
-      
+      $("#logInModal").modal("toggle");
     }
-    
-    
   };
 
   // Add event listeners to the submit and delete buttons
