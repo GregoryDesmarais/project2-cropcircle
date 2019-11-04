@@ -18,6 +18,10 @@ body, html{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.category-title{
+  color: #56D376;
+}
+
 .postHeaders{
   margin-bottom: 10px;
 }
@@ -61,12 +65,12 @@ button, button:visited, button:hover, button:active {
 }
 
 .card{
-  background-color: darkgrey;
+  background-color: #0d7787;
 }
 
 .accordion-collapse{
-  background-color: #696969;
-  color: #F5FFFA;
+  background-color: #b1e964;
+  color: #1a2d3e;
 }
 
 .commentLinkFromPost{
@@ -156,15 +160,43 @@ button, button:visited, button:hover, button:active {
   border: grey 2px solid
 }
 
+.wrap{
+  min-height:100%;
+  margin-bottom: 100px;
+}
+
+.postWrap{
+  padding: 10px;
+  background-color: #56D376;
+  margin-bottom: 20px;
+}
+
+.main{
+  padding-bottom: 125px;
+  overflow: auto
+}
+
+.left-column{
+  height: 125px;
+}
+
+.right-column{
+  height: 125px;
+}
+
+.footer-ul{
+  margin-bottom: 0px;
+}
+
 footer{
-  position: fixed;
-  margin-top: 500px;
+  position: relative;
+  margin-top: -125px;
   font-size: 10px;
-  height: 20%;
-  bottom: 0;
+  height: 125px;
   left: 0;
   width: 100%;
   background-color: #56D376;
+  bottom: 0;
 }
 
 #homeCard{
