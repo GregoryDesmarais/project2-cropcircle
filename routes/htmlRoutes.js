@@ -12,10 +12,22 @@ module.exports = function(app) {
     db.Post.findAll({ where: { category: req.params.category.toLowerCase() } }).then(function(
       posts
     ) {
-      const filteredPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
+      const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
       res.render("categories", {
-        post: filteredPosts,
+        post: sortedPosts,
         category: req.params.category.toLowerCase()
+      });
+    });
+  });
+
+  app.get("/user/:user/posts", function(req, res) {
+    db.Post.findAll({ where: { userName: req.params.user } }).then(function(
+      posts
+    ) {
+      const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
+      res.render("userPosts", {
+        post: sortedPosts, 
+        userName: req.params.user
       });
     });
   });
