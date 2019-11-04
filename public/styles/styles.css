@@ -73,8 +73,8 @@ button:active {
 }
 
 .accordion-collapse {
-    background-color: #b1e964;
-    color: #1a2d3e;
+    background-color: #36A07C;
+    color: white;
 }
 
 .commentLinkFromPost {
@@ -134,6 +134,12 @@ button:active {
 
 .dropdown-toggle {
     width: 200px;
+}
+
+#homeBtn, #homeBtn:hover {
+    color: #56D376;
+    text-decoration: none;
+    
 }
 
 .navbar-nav {
