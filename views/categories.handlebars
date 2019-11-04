@@ -19,7 +19,7 @@
                 <button class="btn btn-secondary" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
             </div>
             <div class="col-sm-8">
-                <h1>{{category}}</h1>
+                <h1>/{{category}}</h1>
             </div>
             <div class="col-sm-2 text-right">
                 <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
@@ -39,11 +39,6 @@
                         {{header}}
                     </button>
                     <br>
-                    <div class="commentLinkFromPost text-right col-12">
-                        <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
-                        <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
-                                src="/images/alien.png"> {{userName}}</a>
-                    </div>
                 </h2>
             </div>
 
@@ -53,6 +48,11 @@
                     {{corntent}}
                 </div>
             </div>
+        </div>
+        <div class="commentLinkFromPost text-right col-12">
+            <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+            <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                    src="/images/alien.png"> {{userName}}</a>
         </div>
     </div>
 

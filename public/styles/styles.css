@@ -81,6 +81,7 @@ button:active {
     font-size: 14px;
     margin-left: 5px;
     margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 .category-header {
@@ -89,6 +90,7 @@ button:active {
     background-color: #0c6573;
     color: #56D376;
     font-size: 2.5rem;
+    margin-bottom: 50px; 
 }
 
 .newUserErrorMessage,
@@ -174,8 +176,14 @@ button:active {
 
 .postWrap {
     padding: 10px;
+    padding-bottom: 5px;
     background-color: #56D376;
     margin-bottom: 20px;
+    border: 2px #1a2c40 solid;
+}
+
+.postWrap:hover {
+    border: 2px solid #b0e765;
 }
 
 .left-column {
