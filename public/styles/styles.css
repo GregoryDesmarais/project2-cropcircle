@@ -18,6 +18,10 @@ body, html{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.category-title{
+  color: #56D376;
+}
+
 .postHeaders{
   margin-bottom: 10px;
 }
