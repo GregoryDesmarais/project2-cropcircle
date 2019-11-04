@@ -32,7 +32,7 @@ module.exports = function(app) {
         }).then(commentData => {
           userComments = commentData.length;
           const response = {
-            userNa me: data.userName,
+            userName: data.userName,
             memberSince: data.createdAt,
             // likes: data.likes,
             commentsMade: userComments,

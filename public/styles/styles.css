@@ -1,258 +1,270 @@
-body, html{
-  font-family: Arial, Helvetica, sans-serif;
-  margin: auto;
-  line-height: 1.6em;
-  background-image: url("./../images/cow.jpg");
-  height: 100%;
+body,
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    line-height: 1.6em;
+    background-image: url("./../images/cow.jpg");
+    height: 100%;
 }
 
 #searchBar {
- width: 500px;
+    width: 500px;
 }
 
-.newPostTextArea{
-  height: 300px;
+.newPostTextArea {
+    height: 300px;
 }
 
-.card-title{
-  font-family: Georgia, 'Times New Roman', Times, serif;
+.card-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.category-title{
-  color: #56D376;
+.postHeaders {
+    margin-bottom: 10px;
 }
 
-.postHeaders{
-  margin-bottom: 10px;
+button,
+button:visited,
+button:hover,
+button:active {
+    text-decoration: none;
 }
 
-button, button:visited, button:hover, button:active {
-  text-decoration:none;
+.postTitle {
+    font-size: 25px;
+    margin-left: 0px;
+    color: #1A2D3E;
 }
 
-.postTitle{
-  font-size: 25px;
-  margin-left: 0px;
-  color: #1A2D3E;
+.postTitle:hover {
+    text-decoration: none;
+    color: #F5FFFA;
 }
 
-.postTitle:hover{
-  text-decoration: none;
-  color: #F5FFFA;
+.postLink {
+    margin-right: 10px;
+    color: #1A2D3E;
 }
 
-
-.postLink{
-  margin-right: 10px;
-  color: #1A2D3E;
+.accordion {
+    margin: auto;
+    max-width: 600px;
 }
 
-.accordion{
-  margin: auto;
-  max-width: 600px;
-}
 
 /* does this look ok? */
-.postTitle{
-  color: #1A2D3E;
+
+.postTitle {
+    color: #1A2D3E;
 }
+
 
 /* .postLink{
   color: #F5FFFA;
 } */
 
-.postLink:hover{
-  text-decoration: none;
-  color: #F5FFFA;
-  
+.postLink:hover {
+    text-decoration: none;
+    color: #F5FFFA;
 }
 
-.card{
-  background-color: #0d7787;
+.card {
+    background-color: #0d7787;
 }
 
-.accordion-collapse{
-  background-color: #b1e964;
-  color: #1a2d3e;
+.accordion-collapse {
+    background-color: #b1e964;
+    color: #1a2d3e;
 }
 
-.commentLinkFromPost{
-  font-size: 14px;
-  margin-left: 5px;
-  margin-top: 10px;
+.commentLinkFromPost {
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
-.jumbotron{
-  z-index: 1;
-  margin-top: 0px;
-  opacity: 90%;
-  background-color: #0c6573;
+.category-header {
+    z-index: 1;
+    opacity: 90%;
+    background-color: #0c6573;
+    color: #56D376;
+    font-size: 2.5rem;
+    margin-bottom: 50px; 
 }
 
-.newUserErrorMessage, .logInErrorMessage{
-  display: none;
+.newUserErrorMessage,
+.logInErrorMessage {
+    display: none;
 }
 
-.description{
-  max-width: 600px;
-  margin: auto;
-}
-.jumbotron-container{
-  opacity: 170%;
-  z-index: 200;
+.description {
+    max-width: 600px;
+    margin: auto;
 }
 
-.list-group-item:hover{
-  border: 1px grey solid;
+.jumbotron-container {
+    opacity: 170%;
+    z-index: 200;
 }
 
-.container{
-  margin: auto;
+.list-group-item:hover {
+    border: 1px grey solid;
 }
 
-.homepage-container{
-  margin-bottom: 50px;
+.container {
+    margin: auto;
 }
 
-.about{
-  margin: 0 auto;
+.homepage-container {
+    margin-bottom: 50px;
 }
 
-.home-page-header-break{
-  border: 1px grey solid;
+.about {
+    margin: 0 auto;
+}
+
+.home-page-header-break {
+    border: 1px grey solid;
 }
 
 .list-group-item {
-  line-height: 2.5;
+    line-height: 2.5;
 }
 
-.dropdown-toggle{
-  width: 200px;
+.dropdown-toggle {
+    width: 200px;
 }
 
 .navbar-nav {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
-.navbar-nav{
-  border: 2px lightgray solid
+.navbar-nav {
+    border: 2px lightgray solid
 }
 
 .navbar-nav:hover {
-  border: 2px grey solid;
+    border: 2px grey solid;
 }
 
-.form-control{
-  width: 600px;
+.form-control {
+    width: 600px;
 }
 
-.dropdownLabel{
-  margin-left: 20px;
+.dropdownLabel {
+    margin-left: 20px;
 }
 
 .dropdown-toggle::after {
-  margin-left: 110px;
-  margin-right: 0px;
+    margin-left: 110px;
+    margin-right: 0px;
 }
 
-.post{
-  border: 2px lightgrey solid
+.post {
+    border: 2px lightgrey solid
 }
 
-.post:hover{
-  border: grey 2px solid
+.post:hover {
+    border: grey 2px solid
 }
 
-.wrap{
-  min-height:100%;
-  margin-bottom: 100px;
+.wrap {
+    min-height: 100%;
+    margin-bottom: 100px;
 }
 
-.postWrap{
-  padding: 10px;
-  background-color: #56D376;
-  margin-bottom: 20px;
+.postWrap {
+    padding: 10px;
+    padding-bottom: 5px;
+    background-color: #56D376;
+    margin-bottom: 20px;
+    border: 2px #1a2c40 solid;
 }
 
-.main{
-  padding-bottom: 125px;
-  overflow: auto
+.postWrap:hover {
+    border: 2px solid #b0e765;
 }
 
-.left-column{
-  height: 125px;
+.left-column {
+    height: 125px;
 }
 
-.right-column{
-  height: 125px;
+.right-column {
+    height: 125px;
 }
 
-.footer-ul{
-  margin-bottom: 0px;
+.footer-ul {
+    margin-bottom: 0px;
 }
 
-footer{
-  position: relative;
-  margin-top: -125px;
-  font-size: 10px;
-  height: 125px;
-  left: 0;
-  width: 100%;
-  background-color: #56D376;
-  bottom: 0;
+footer {
+    position: fixed;
+    font-size: 10px;
+    height: 125px;
+    background-color: #56D376;
+    bottom: 0;
 }
 
-#homeCard{
-  background-color: white;
-  margin-top:250px;
-  margin-bottom: 500px;
+.footer-hide {
+    position: fixed;
+    font-size: 10px;
+    height: 3em;
+    background-color: #56D376;
+    bottom: 0;
 }
 
-#newPostBtn{
-  background-color: #B1E964;
-  color: #1A2D3E;
+#homeCard {
+    background-color: white;
+    margin-top: 250px;
+    margin-bottom: 500px;
 }
 
-#newPostBtn:hover{
-  background-color: #0D7788;
+#newPostBtn {
+    background-color: #B1E964;
+    color: #1A2D3E;
 }
 
-#favoriteThisCategory{
-  background-color: #36A07C;
-  color: #1A2D3E;
+#newPostBtn:hover {
+    background-color: #0D7788;
 }
 
-#favoriteThisCategory:hover{
-  background-color: #0D7788;
+#favoriteThisCategory {
+    background-color: #36A07C;
+    color: #1A2D3E;
 }
 
-.main-sub-btn:hover{
-  background-color: #0D7788;
+#favoriteThisCategory:hover {
+    background-color: #0D7788;
 }
 
-#submitNewPostBtn{
-  background-color: #0D7788;
-  color: #1A2D3E;
+.main-sub-btn:hover {
+    background-color: #0D7788;
 }
 
-#submitNewPostBtn:hover{
-  background-color: #B1E964;
+#submitNewPostBtn {
+    background-color: #0D7788;
+    color: #1A2D3E;
 }
 
-.commentLinkFromPost{
-  color: #1A2D3E;
+#submitNewPostBtn:hover {
+    background-color: #B1E964;
 }
 
-#submitNewCommentBtn{
-  background-color: #0D7788;
-  color: #1A2D3E;
+.commentLinkFromPost {
+    color: #1A2D3E;
 }
 
-#submitNewCommentBtn:hover{
-  background-color: #B1E964;
+#submitNewCommentBtn {
+    background-color: #0D7788;
+    color: #1A2D3E;
 }
 
-#newCommentBtn{
-  background-color: #B1E964;
-  color: #1A2D3E;
+#submitNewCommentBtn:hover {
+    background-color: #B1E964;
+}
+
+#newCommentBtn {
+    background-color: #B1E964;
+    color: #1A2D3E;
 }

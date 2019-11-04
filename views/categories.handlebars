@@ -12,19 +12,26 @@
     </div>
     {{/each}}
 </div> -->
-<div class="main">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 cat-name category-title text-center">c/{{category}}</h1>
-            <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
-            <button class="btn btn-secondary" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
+<div class="category-header text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 text-left">
+                <button class="btn btn-secondary" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
+            </div>
+            <div class="col-sm-8">
+                <h1>/{{category}}</h1>
+            </div>
+            <div class="col-sm-2 text-right">
+                <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="accordion" id="accordion">
-        {{#each post}}
-        <div class="postWrap">
-            <div class="card postHeaders">
+<div class="accordion" id="accordion">
+    {{#each post}}
+    <div class="postWrap">
+        <div class="card postHeaders">
             <div class="card-header " id="heading{{id}}">
                 <h2 class="mb-0">
                     <button class="btn btn-link col-12 text-center postTitle" type="button" data-toggle="collapse"
@@ -32,11 +39,6 @@
                         {{header}}
                     </button>
                     <br>
-                    <div class="commentLinkFromPost text-right col-12">
-                        <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
-                        <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
-                                src="/images/alien.png"> {{userName}}</a>
-                    </div>
                 </h2>
             </div>
 
@@ -47,37 +49,48 @@
                 </div>
             </div>
         </div>
+        <div class="commentLinkFromPost text-right col-12">
+            <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+            <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                    src="/images/alien.png"> {{userName}}</a>
         </div>
-        
-        {{/each}}
     </div>
 
-    <div class="modal" id="newPostModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><font color="#0D7788">Create New Post</font></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="postTitle"><font color="#0D7788">Title</font></label>
-                            <input type="text" class="form-control col-12" rows="9" id="newPostTitle"
-                                aria-describedby="userName" placeholder="Post Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="newPostContent"><font color="#0D7788">Post Body</font></label>
-                            <textarea class="form-control col-12 newPostTextArea" id="newPostContent"
-                                placeholder="Post"></textarea>
-                        </div>
-                        <p class="logInErrorMessage">One or more fields invalid</p>
-                    </form>
-                    <button class="btn btn-primary" id="submitNewPostBtn">Submit</button>
-                </div>
+    {{/each}}
+</div>
+
+<div class="modal" id="newPostModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <font color="#0D7788">Create New Post</font>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="postTitle">
+                            <font color="#0D7788">Title</font>
+                        </label>
+                        <input type="text" class="form-control col-12" rows="9" id="newPostTitle"
+                            aria-describedby="userName" placeholder="Post Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPostContent">
+                            <font color="#0D7788">Post Body</font>
+                        </label>
+                        <textarea class="form-control col-12 newPostTextArea" id="newPostContent"
+                            placeholder="Post"></textarea>
+                    </div>
+                    <p class="logInErrorMessage">One or more fields invalid</p>
+                </form>
+                <button class="btn btn-primary" id="submitNewPostBtn">Submit</button>
             </div>
         </div>
     </div>
+</div>
 </div>

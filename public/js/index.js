@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
-$(function () {
+$(function() {
   // Get references to page elements
   const $newPostButton = $("#newPostBtn");
   const $submitNewPost = $("#submitNewPostBtn");
@@ -44,9 +44,9 @@ $(function () {
       $("#signOut").show();
       populateNavBar();
       if (userInformation.data[0].favorites.includes(categoryValue)) {
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
       } else {
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");    
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");    
       } 
     } else {
       $("#signIn").show();
@@ -67,7 +67,7 @@ $(function () {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postRequest: function (example, targetURL) {
+    postRequest: function(example, targetURL) {
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
@@ -77,17 +77,18 @@ $(function () {
         data: JSON.stringify(example)
       });
     },
-    putRequest: function (example, targetURL) {
+    putRequest: function(example, targetURL) {
       return $.ajax({
         headers: {
+          authorization: `Bearer ${userJWT}`,
           "Content-Type": "application/json"
         },
         url: targetURL,
         type: "PUT",
-        data:JSON.stringify(example)
+        data: JSON.stringify(example)
       });
     },
-    submitPost: function (newPost, targetURL) {
+    submitPost: function(newPost, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -98,13 +99,13 @@ $(function () {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function (targetURL) {
+    getExamples: function(targetURL) {
       return $.ajax({
         url: targetURL,
         type: "GET"
       });
     },
-    deleteExample: function (id) {
+    deleteExample: function(id) {
       return $.ajax({
         url: `${targetURL}/${id}`,
         type: "DELETE"
@@ -113,9 +114,9 @@ $(function () {
   };
 
   // refreshExamples gets new examples from the db and repopulates the list
-  var refreshExamples = function () {
-    API.getExamples().then(function (data) {
-      var $examples = data.map(function (example) {
+  var refreshExamples = function() {
+    API.getExamples().then(function(data) {
+      var $examples = data.map(function(example) {
         var $a = $("<a>")
           .text(example.text)
           .attr("href", "/example/" + example.id);
@@ -143,7 +144,7 @@ $(function () {
 
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  var handleFormSubmit = function (event) {
+  var handleFormSubmit = function(event) {
     event.preventDefault();
 
     var example = {
@@ -156,7 +157,7 @@ $(function () {
       return;
     }
 
-    API.saveExample(example).then(function () {
+    API.saveExample(example).then(function() {
       refreshExamples();
     });
 
@@ -166,17 +167,17 @@ $(function () {
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
-  var handleDeleteBtnClick = function () {
+  var handleDeleteBtnClick = function() {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
 
-    API.deleteExample(idToDelete).then(function () {
+    API.deleteExample(idToDelete).then(function() {
       refreshExamples();
     });
   };
 
-  const createNewUser = function () {
+  const createNewUser = function() {
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -188,21 +189,19 @@ $(function () {
     };
 
     $(".newUserErrorMessage").hide();
-    if (
-      !(
-        userName &&
-        userName.length < 10 &&
-        userName.length > 3 &&
-        userEmail &&
-        userPass
-      )
-    ) {
+    if (!(
+      userName &&
+                userName.length < 10 &&
+                userName.length > 3 &&
+                userEmail &&
+                userPass
+    )) {
       $(".invalidField")
         .show()
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function (data) {
+      API.postRequest(newUser, "/api/newUser").then(function(data) {
         console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
@@ -220,12 +219,12 @@ $(function () {
     }
   };
 
-  const userLogOut = function () {
+  const userLogOut = function() {
     sessionStorage.setItem("cornHubUser", null);
     location.reload();
   };
 
-  const userLogIn = function () {
+  const userLogIn = function() {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -242,12 +241,17 @@ $(function () {
 
   };
 
-  const newPostModal = function () {
-    category = $(this).data("category");
-    $("#newPostModal").modal("toggle");
+  const newPostModal = function() {
+    if (userJWT !== undefined) {
+      category = $(this).data("category");
+      $("#newPostModal").modal("toggle");
+    } else {
+      $("#logInModal").modal("toggle");
+    }
+
   };
 
-  const submitNewPost = function () {
+  const submitNewPost = function() {
     const newPost = {
       userName: userInformation.data[0].userName,
       category: category,
@@ -259,7 +263,7 @@ $(function () {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newPost, "/api/posts").then(function (data) {
+      API.submitPost(newPost, "/api/posts").then(function(data) {
         if (data.postMade) {
           location.reload();
         }
@@ -270,34 +274,36 @@ $(function () {
   const getUserInformation = userToBeQueried => {
     console.log(userToBeQueried);
     API.getExamples(`/api/user/${userToBeQueried}`).then(data => {
+      let userInfoTime = `<li class="list-group-item" id="getInfoUserTime">User Since ${moment(data.memberSince).format("MMM Do YY")}</li>`;
+      let userInfoPostsMade = `<li class="list-group-item" id="getInfoUserPostsMade">Number of Posts made: ${data.postsMade}</li>`;
+      let userInfoCommentsMade = `<li class="list-group-item" id="getInfoUserCommentsMade">Number of Comments made: ${data.commentsMade}</li>`;
+      let viewAllPosts = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
+      let viewAllComments = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
-      $("#getInfoUserTime").html(`User Since ${moment(data.memberSince).format("MMM Do YY")}`);
-      $("#getInfoUserPostsMade").html(`Posts made: ${data.postsMade}`);
-      $("#getInfoUserCommentsMade").html(`Comments Made: ${data.commentsMade}`);
-      console.log("this is running");
+      $("#userInfoList").html(`${userInfoPostsMade}${viewAllPosts}${userInfoCommentsMade}${viewAllComments}${userInfoTime}`);
       $("#userInfoModal").modal("toggle");
     });
   };
 
-  const newCommentModal = function () {
+  const newCommentModal = function() {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
 
-  const submitNewComment = function () {
+  const submitNewComment = function() {
     const newComment = {
       post: $("#newCommentBtn").data("post"),
       userName: userInformation.data[0].userName,
       corntent: $newCommentContent.val().trim(),
-      UserId: userInformation.data[0].id, 
+      UserId: userInformation.data[0].id,
       category: $("#newCommentBtn").data("category"),
     };
     console.log(newComment);
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newComment, "/api/comment").then(function (data) {
+      API.submitPost(newComment, "/api/comment").then(function(data) {
         if (data.postMade) {
           location.reload();
         }
@@ -305,34 +311,37 @@ $(function () {
     }
   };
 
-  const addNewFavorite = () => {
-    const user = userInformation.data[0];
-    const unfavoritedItem = user.favorites.indexOf(categoryValue);
-    if (user.favorites.includes(categoryValue)) {
-      console.log("splice running");
-      userInformation.data[0].favorites.splice(unfavoritedItem, 1);
-      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "yellow", "border" : "1px yellow solid" }).html("Follow");
-      populateNavBar();
-      console.log(user.favorites);
-      console.log(userInformation.data[0].favorites);
+  const addNewFavorite = () => {   
+    if (userJWT !== undefined) {
+      const user = userInformation.data[0];
+      const unfavoritedItem = user.favorites.indexOf(categoryValue);
+      if (user.favorites.includes(categoryValue)) {
+        console.log("splice running");
+        userInformation.data[0].favorites.splice(unfavoritedItem, 1);
+        sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
+        populateNavBar();
+        console.log(user.favorites);
+        console.log(userInformation.data[0].favorites);
+      } else {
+        console.log("push running");
+        userInformation.data[0].favorites.push(categoryValue);
+        sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+        console.log(userInformation.data[0].favorites);
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        populateNavBar();
+      }
+      const updateFavorite = {
+        UserId: user.id,
+        newFavorites: user.favorites.join(",")
+      };
+      
+      API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
+        console.log(data);
+      });
     } else {
-      console.log("push running");
-      userInformation.data[0].favorites.push(categoryValue);
-      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-      console.log(userInformation.data[0].favorites);
-      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "red", "border" : "1px red solid" }).html("Unfollow");
-      populateNavBar();
+      $("#logInModal").modal("toggle");
     }
-    const updateFavorite = {
-      UserId: user.id,
-      newFavorites: user.favorites.join(",")
-    };
-    
-    API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
-      console.log(data);
-    });
-    
   };
 
   // Add event listeners to the submit and delete buttons
@@ -356,7 +365,15 @@ $(function () {
     var searchParam = $("#searchBar").val().trim();
 
     console.log(searchParam);
-    
+
+    // $.ajax({
+    //   url: "http://localhost:3000/api/" + searchParam,
+    //   method: "GET"
+    // }).then((res) => {
+    //   console.log(res);
+    // });
+
+
     $(".cat-name").text("c/" + searchParam);
 
     var host = window.location.hostname;
@@ -378,12 +395,19 @@ $(function () {
   });
 
   initialize();
-  
-});
 
-// getExamples: function() {
-//   return $.ajax({
-//     url: targetURL,
-//     type: "GET"
-//   });
-// }
+  $("#tos").click(function() {
+    if (!localStorage.acceptTerms) {
+      localStorage.acceptTerms = true;
+    }
+    if ($("footer").hasClass("footer-hide")) {
+      $("footer").removeClass("footer-hide");
+    } else {
+      $("footer").addClass("footer-hide");
+    }
+  });
+
+  if (localStorage.acceptTerms) {
+    $("footer").addClass("footer-hide");
+  }
+});
