@@ -17,10 +17,9 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4 cat-name text-center">Welcome to {{category}}</h1>
+            <h1 class="display-4 cat-name text-center">{{category}}</h1>
             <button class="btn btn-primary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
-            <button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Favorite this
-                Category</button>
+            <button class="btn btn-warning" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
         </div>
     </div>
 
@@ -29,7 +28,8 @@
 
     <div class="accordion" id="accordion">
         {{#each post}}
-        <div class="card postHeaders">
+        <div class="postWrap">
+            <div class="card postHeaders">
             <div class="card-header " id="heading{{id}}">
                 <h2 class="mb-0">
                     <button class="btn btn-link col-12 text-center postTitle" type="button" data-toggle="collapse"
@@ -52,6 +52,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        
         {{/each}}
     </div>
 

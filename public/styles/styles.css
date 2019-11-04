@@ -61,12 +61,12 @@ button, button:visited, button:hover, button:active {
 }
 
 .card{
-  background-color: darkgrey;
+  background-color: #0d7787;
 }
 
 .accordion-collapse{
-  background-color: #696969;
-  color: #F5FFFA;
+  background-color: #b1e964;
+  color: #1a2d3e;
 }
 
 .commentLinkFromPost{
@@ -159,6 +159,12 @@ button, button:visited, button:hover, button:active {
 .wrap{
   min-height:100%;
   margin-bottom: 100px;
+}
+
+.postWrap{
+  padding: 10px;
+  background-color: #56D376;
+  margin-bottom: 20px;
 }
 
 .main{
