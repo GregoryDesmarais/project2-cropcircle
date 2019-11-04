@@ -33,6 +33,7 @@ button, button:visited, button:hover, button:active {
 .postTitle{
   font-size: 25px;
   margin-left: 0px;
+  color: #1A2D3E;
 }
 
 .postTitle:hover{
@@ -43,6 +44,7 @@ button, button:visited, button:hover, button:active {
 
 .postLink{
   margin-right: 10px;
+  color: #1A2D3E;
 }
 
 .accordion{
@@ -50,17 +52,18 @@ button, button:visited, button:hover, button:active {
   max-width: 600px;
 }
 
+/* does this look ok? */
 .postTitle{
-  color: black;
+  color: #1A2D3E;
 }
 
-.postLink{
+/* .postLink{
   color: #F5FFFA;
-}
+} */
 
 .postLink:hover{
   text-decoration: none;
-  color: black;
+  color: #F5FFFA;
   
 }
 
@@ -207,7 +210,7 @@ footer{
 
 #newPostBtn{
   background-color: #B1E964;
-  color: black;
+  color: #1A2D3E;
 }
 
 #newPostBtn:hover{
@@ -216,7 +219,7 @@ footer{
 
 #favoriteThisCategory{
   background-color: #36A07C;
-  color: black;
+  color: #1A2D3E;
 }
 
 #favoriteThisCategory:hover{
@@ -227,3 +230,29 @@ footer{
   background-color: #0D7788;
 }
 
+#submitNewPostBtn{
+  background-color: #0D7788;
+  color: #1A2D3E;
+}
+
+#submitNewPostBtn:hover{
+  background-color: #B1E964;
+}
+
+.commentLinkFromPost{
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn{
+  background-color: #0D7788;
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn:hover{
+  background-color: #B1E964;
+}
+
+#newCommentBtn{
+  background-color: #B1E964;
+  color: #1A2D3E;
+}
