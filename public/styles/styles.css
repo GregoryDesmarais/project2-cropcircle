@@ -52,8 +52,9 @@ button, button:visited, button:hover, button:active {
   max-width: 600px;
 }
 
+/* does this look ok? */
 .postTitle{
-  color: black;
+  color: #1A2D3E;
 }
 
 /* .postLink{
@@ -209,7 +210,7 @@ footer{
 
 #newPostBtn{
   background-color: #B1E964;
-  color: black;
+  color: #1A2D3E;
 }
 
 #newPostBtn:hover{
@@ -218,7 +219,7 @@ footer{
 
 #favoriteThisCategory{
   background-color: #36A07C;
-  color: black;
+  color: #1A2D3E;
 }
 
 #favoriteThisCategory:hover{
@@ -231,7 +232,7 @@ footer{
 
 #submitNewPostBtn{
   background-color: #0D7788;
-  color: black;
+  color: #1A2D3E;
 }
 
 #submitNewPostBtn:hover{
@@ -239,5 +240,19 @@ footer{
 }
 
 .commentLinkFromPost{
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn{
+  background-color: #0D7788;
+  color: #1A2D3E;
+}
+
+#submitNewCommentBtn:hover{
+  background-color: #B1E964;
+}
+
+#newCommentBtn{
+  background-color: #B1E964;
   color: #1A2D3E;
 }
