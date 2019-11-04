@@ -79,7 +79,7 @@ button, button:visited, button:hover, button:active {
   z-index: 1;
   margin-top: 0px;
   opacity: 90%;
-  background-color: null;
+  background-color: #0c6573;
 }
 
 .newUserErrorMessage, .logInErrorMessage{
@@ -172,3 +172,26 @@ footer{
   margin-top:250px;
   margin-bottom: 500px;
 }
+
+#newPostBtn{
+  background-color: #B1E964;
+  color: black;
+}
+
+#newPostBtn:hover{
+  background-color: #0D7788;
+}
+
+#favoriteThisCategory{
+  background-color: #36A07C;
+  color: black;
+}
+
+#favoriteThisCategory:hover{
+  background-color: #0D7788;
+}
+
+.main-sub-btn:hover{
+  background-color: #0D7788;
+}
+
