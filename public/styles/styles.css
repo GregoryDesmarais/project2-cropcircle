@@ -33,6 +33,7 @@ button, button:visited, button:hover, button:active {
 .postTitle{
   font-size: 25px;
   margin-left: 0px;
+  color: #1A2D3E;
 }
 
 .postTitle:hover{
@@ -43,6 +44,7 @@ button, button:visited, button:hover, button:active {
 
 .postLink{
   margin-right: 10px;
+  color: #1A2D3E;
 }
 
 .accordion{
@@ -54,13 +56,13 @@ button, button:visited, button:hover, button:active {
   color: black;
 }
 
-.postLink{
+/* .postLink{
   color: #F5FFFA;
-}
+} */
 
 .postLink:hover{
   text-decoration: none;
-  color: black;
+  color: #F5FFFA;
   
 }
 
@@ -227,3 +229,15 @@ footer{
   background-color: #0D7788;
 }
 
+#submitNewPostBtn{
+  background-color: #0D7788;
+  color: black;
+}
+
+#submitNewPostBtn:hover{
+  background-color: #B1E964;
+}
+
+.commentLinkFromPost{
+  color: #1A2D3E;
+}
