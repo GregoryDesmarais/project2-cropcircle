@@ -1,0 +1,42 @@
+<div class="category-header text-center">
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-sm-12">
+                <h1>{{userName}}</h1>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="accordion" id="accordion">
+    {{#each post}}
+    <div class="postWrap">
+        <div class="card postHeaders">
+            <div class="card-header " id="heading{{id}}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link col-12 text-center postTitle" type="button" data-toggle="collapse"
+                        data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">
+                        {{header}}
+                    </button>
+                    <br>
+                </h2>
+            </div>
+
+            <div id="collapse{{id}}" class="collapse accordion-collapse" aria-labelledby="heading{{id}}"
+                data-parent="#accordionExample">
+                <div class="card-body">
+                    {{corntent}}
+                </div>
+            </div>
+        </div>
+        <div class="commentLinkFromPost text-right col-12">
+            <a class="postLink" href="/{{category}}/{{id}}"> Comments</a>
+            <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                    src="/images/alien.png"> {{userName}}</a>
+        </div>
+    </div>
+
+    {{/each}}
+</div>
