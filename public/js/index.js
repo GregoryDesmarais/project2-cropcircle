@@ -80,6 +80,7 @@ $(function () {
     putRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
+          authorization: `Bearer ${userJWT}`,
           "Content-Type": "application/json"
         },
         url: targetURL,
@@ -308,30 +309,35 @@ $(function () {
   const addNewFavorite = () => {
     const user = userInformation.data[0];
     const unfavoritedItem = user.favorites.indexOf(categoryValue);
-    if (user.favorites.includes(categoryValue)) {
-      console.log("splice running");
-      userInformation.data[0].favorites.splice(unfavoritedItem, 1);
-      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-      $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
-      populateNavBar();
-      console.log(user.favorites);
-      console.log(userInformation.data[0].favorites);
+    if (userJWT !== null) {
+      if (user.favorites.includes(categoryValue)) {
+        console.log("splice running");
+        userInformation.data[0].favorites.splice(unfavoritedItem, 1);
+        sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
+        populateNavBar();
+        console.log(user.favorites);
+        console.log(userInformation.data[0].favorites);
+      } else {
+        console.log("push running");
+        userInformation.data[0].favorites.push(categoryValue);
+        sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
+        console.log(userInformation.data[0].favorites);
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        populateNavBar();
+      }
+      const updateFavorite = {
+        UserId: user.id,
+        newFavorites: user.favorites.join(",")
+      };
+      
+      API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
+        console.log(data);
+      });
     } else {
-      console.log("push running");
-      userInformation.data[0].favorites.push(categoryValue);
-      sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-      console.log(userInformation.data[0].favorites);
-      $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
-      populateNavBar();
+      
     }
-    const updateFavorite = {
-      UserId: user.id,
-      newFavorites: user.favorites.join(",")
-    };
     
-    API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
-      console.log(data);
-    });
     
   };
 
