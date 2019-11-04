@@ -223,6 +223,7 @@ footer {
 #newPostBtn {
     background-color: #B1E964;
     color: #1A2D3E;
+    margin-top: 5px;
 }
 
 #newPostBtn:hover {
@@ -232,6 +233,7 @@ footer {
 #favoriteThisCategory {
     background-color: #36A07C;
     color: #1A2D3E;
+    margin-top: 5px;
 }
 
 #favoriteThisCategory:hover {
@@ -267,4 +269,21 @@ footer {
 #newCommentBtn {
     background-color: #B1E964;
     color: #1A2D3E;
+    margin-top: 5px;
+}
+ #newCommentBtn:hover {
+   background-color: turquoise;
+ }
+
+.com-box {
+  background-color: #B1E964;
+}
+
+.com-info {
+  background-color: turquoise;
+}
+
+.comment-card {
+  margin: auto;
+  max-width: 600px;
 }
