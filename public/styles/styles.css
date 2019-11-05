@@ -73,8 +73,8 @@ button:active {
 }
 
 .accordion-collapse {
-    background-color: #b1e964;
-    color: #1a2d3e;
+    background-color: #36A07C;
+    color: white;
 }
 
 .commentLinkFromPost {
@@ -134,6 +134,11 @@ button:active {
 
 .dropdown-toggle {
     width: 200px;
+}
+
+#homeBtn, #homeBtn:hover {
+    color: #56D376;
+    text-decoration: none;
 }
 
 .navbar-nav {
@@ -216,13 +221,14 @@ footer {
 
 #homeCard {
     background-color: white;
-    margin-top: 250px;
+    margin-top: 100px;
     margin-bottom: 500px;
 }
 
 #newPostBtn {
     background-color: #B1E964;
     color: #1A2D3E;
+    margin-top: 5px;
 }
 
 #newPostBtn:hover {
@@ -232,6 +238,7 @@ footer {
 #favoriteThisCategory {
     background-color: #36A07C;
     color: #1A2D3E;
+    margin-top: 5px;
 }
 
 #favoriteThisCategory:hover {
@@ -267,4 +274,103 @@ footer {
 #newCommentBtn {
     background-color: #B1E964;
     color: #1A2D3E;
+    margin-top: 5px;
+}
+
+.pinkAlien {
+  animation-duration: 15s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+}
+
+#getInfoUserName {
+  color: #0D7788;
+}
+
+.list-group-item {
+  color: #0D7788;
+}
+
+#getInfoUserCommentsMade {
+  color: #1A2D3E;
+}
+
+.backButton{
+  color: #1A2D3E;
+  background-color: #B1E964;
+  margin-top: 5px;
+}
+
+.backButton:hover {
+  background-color: #0D7788;
+}
+
+#viewAllP, #viewAllC {
+  color: #36A07C;
+}
+
+#newCommentBtn:hover {
+   background-color: turquoise;
+}
+
+.com-box {
+  background-color: #B1E964;
+}
+
+.com-info {
+  background-color: turquoise;
+}
+
+.comment-card {
+  margin: auto;
+  max-width: 600px;
+}
+
+#tos {
+  background-color: turquoise;
+}
+
+#tos:hover {
+  background-color: #0D7788;
+}
+
+@media only screen and (max-width: 500px){
+  .hamburger{
+    float: right;
+  }  
+
+  #homeBtn {
+    display: none;
+  }
+  .form-control {
+    margin-top: 3px;
+  }
+
+  .burger-box {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .nav-link {
+    padding-left: 6px !important;
+  }
+
+  .followBtn {
+    position: absolute;
+    left: 0px;
+  }
+
+  .cat-header {
+    position: absolute;
+  }
+
+  .magicBtn {
+    position: absolute;
+    right: 0px;
+  }
+  
+  .headingCont {
+    margin-bottom: 80px;
+    margin-top: 10px;
+  }
 }

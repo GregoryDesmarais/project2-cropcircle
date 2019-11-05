@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 text-left">
+            <a href='/{{category}}' class="btn btn-primary backButton">Back to {{category}}</a>
             <button class="btn btn-primary" id="newCommentBtn" data-post="{{post}}" data-category="{{category}}">Add a comment!</button>
             </div>
             <div class="col-sm-8">
@@ -10,8 +11,6 @@
         </div>
     </div>
 </div>
-
-
 
 {{#each post}}
 <div class="card">
@@ -26,10 +25,10 @@
 {{#if comments}}
 {{>comments}}
 {{else}}
-<div class="card">
-  <div class="card-header">There are no comments for this post!</div>
+<div class="card comment-card">
+  <div class="card-header com-info">There are no comments for this post!</div>
   <!--Inserts the userName and createdAt time in the card title-->
-  <div class="card-body">Does no one give a husk!?</div>
+  <div class="card-body com-box">Does no one give a husk!?</div>
   <!--Inserts the comments content-->
 </div>
 {{/if}}

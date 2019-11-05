@@ -114,9 +114,9 @@ $(function() {
   };
 
   // refreshExamples gets new examples from the db and repopulates the list
-  var refreshExamples = function() {
-    API.getExamples().then(function(data) {
-      var $examples = data.map(function(example) {
+  var refreshExamples = () => {
+    API.getExamples().then(data => {
+      var $examples = data.map(example => {
         var $a = $("<a>")
           .text(example.text)
           .attr("href", "/example/" + example.id);
@@ -144,7 +144,7 @@ $(function() {
 
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  var handleFormSubmit = function(event) {
+  var handleFormSubmit = event => {
     event.preventDefault();
 
     var example = {
@@ -157,7 +157,7 @@ $(function() {
       return;
     }
 
-    API.saveExample(example).then(function() {
+    API.saveExample(example).then(() => {
       refreshExamples();
     });
 
@@ -177,7 +177,7 @@ $(function() {
     });
   };
 
-  const createNewUser = function() {
+  const createNewUser = () => {
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -201,7 +201,7 @@ $(function() {
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function(data) {
+      API.postRequest(newUser, "/api/newUser").then(data => {
         console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
@@ -219,12 +219,12 @@ $(function() {
     }
   };
 
-  const userLogOut = function() {
+  const userLogOut = () => {
     sessionStorage.setItem("cornHubUser", null);
     location.reload();
   };
 
-  const userLogIn = function() {
+  const userLogIn = () => {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -241,7 +241,7 @@ $(function() {
 
   };
 
-  const newPostModal = function() {
+  const newPostModal = () => {
     if (userJWT !== undefined) {
       category = $(this).data("category");
       $("#newPostModal").modal("toggle");
@@ -251,7 +251,7 @@ $(function() {
 
   };
 
-  const submitNewPost = function() {
+  const submitNewPost = () => {
     const newPost = {
       userName: userInformation.data[0].userName,
       category: category,
@@ -277,8 +277,8 @@ $(function() {
       let userInfoTime = `<li class="list-group-item" id="getInfoUserTime">User Since ${moment(data.memberSince).format("MMM Do YY")}</li>`;
       let userInfoPostsMade = `<li class="list-group-item" id="getInfoUserPostsMade">Number of Posts made: ${data.postsMade}</li>`;
       let userInfoCommentsMade = `<li class="list-group-item" id="getInfoUserCommentsMade">Number of Comments made: ${data.commentsMade}</li>`;
-      let viewAllPosts = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
-      let viewAllComments = `<li class="list-group-item" id="getInfoUserCommentsMade"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
+      let viewAllPosts = `<li class="list-group-item" id="viewAllP"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
+      let viewAllComments = `<li class="list-group-item" id="viewAllC"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
       console.log(data);
       $("#getInfoUserName").html(`${data.userName}`);
       $("#userInfoList").html(`${userInfoPostsMade}${viewAllPosts}${userInfoCommentsMade}${viewAllComments}${userInfoTime}`);
@@ -286,12 +286,12 @@ $(function() {
     });
   };
 
-  const newCommentModal = function() {
+  const newCommentModal = () => {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
 
-  const submitNewComment = function() {
+  const submitNewComment = () => {
     const newComment = {
       post: $("#newCommentBtn").data("post"),
       userName: userInformation.data[0].userName,
