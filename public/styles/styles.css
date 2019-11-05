@@ -320,3 +320,11 @@ footer {
   margin: auto;
   max-width: 600px;
 }
+
+#tos {
+  background-color: turquoise;
+}
+
+#tos:hover {
+  background-color: #0D7788;
+}
