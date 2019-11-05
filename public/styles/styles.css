@@ -271,6 +271,37 @@ footer {
     color: #1A2D3E;
     margin-top: 5px;
 }
+
+.pinkAlien {
+  animation-duration: 15s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+}
+
+#getInfoUserName {
+  color: #0D7788;
+}
+
+.list-group-item {
+  color: #0D7788;
+}
+
+#getInfoUserCommentsMade {
+  color: #1A2D3E;
+}
+
+.backButton{
+  color: #1A2D3E;
+  background-color: #B1E964;
+}
+
+.backButton:hover {
+  background-color: #0D7788;
+}
+
+#viewAllP, #viewAllC {
+  color: #36A07C;
+}
  #newCommentBtn:hover {
    background-color: turquoise;
  }
