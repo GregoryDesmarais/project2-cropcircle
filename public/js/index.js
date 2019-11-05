@@ -241,7 +241,7 @@ $(function() {
 
   };
 
-  const newPostModal = () => {
+  const newPostModal = function() {
     if (userJWT !== undefined) {
       category = $(this).data("category");
       $("#newPostModal").modal("toggle");
@@ -286,7 +286,7 @@ $(function() {
     });
   };
 
-  const newCommentModal = () => {
+  const newCommentModal = function() {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
