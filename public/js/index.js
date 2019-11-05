@@ -177,7 +177,7 @@ $(function() {
     });
   };
 
-  const createNewUser = function() {
+  const createNewUser = () => {
     const userName = $newUserName.val().trim();
     const userEmail = $newUserEmail.val().trim();
     const userPass = $newUserPass.val().trim();
@@ -201,7 +201,7 @@ $(function() {
         .css({ color: "red" })
         .addClass("text-center");
     } else {
-      API.postRequest(newUser, "/api/newUser").then(function(data) {
+      API.postRequest(newUser, "/api/newUser").then(data => {
         console.log(data);
         if (data.newUser) {
           $("#registerAccountModal").modal("toggle");
@@ -219,12 +219,12 @@ $(function() {
     }
   };
 
-  const userLogOut = function() {
+  const userLogOut = () => {
     sessionStorage.setItem("cornHubUser", null);
     location.reload();
   };
 
-  const userLogIn = function() {
+  const userLogIn = () => {
     const userName = $userName.val().trim();
     const userPass = $userPass.val().trim();
     const user = {
@@ -241,7 +241,7 @@ $(function() {
 
   };
 
-  const newPostModal = function() {
+  const newPostModal = () => {
     if (userJWT !== undefined) {
       category = $(this).data("category");
       $("#newPostModal").modal("toggle");
@@ -251,7 +251,7 @@ $(function() {
 
   };
 
-  const submitNewPost = function() {
+  const submitNewPost = () => {
     const newPost = {
       userName: userInformation.data[0].userName,
       category: category,
@@ -286,12 +286,12 @@ $(function() {
     });
   };
 
-  const newCommentModal = function() {
+  const newCommentModal = () => {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
 
-  const submitNewComment = function() {
+  const submitNewComment = () => {
     const newComment = {
       post: $("#newCommentBtn").data("post"),
       userName: userInformation.data[0].userName,
