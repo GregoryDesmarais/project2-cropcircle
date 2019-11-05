@@ -293,6 +293,7 @@ footer {
 .backButton{
   color: #1A2D3E;
   background-color: #B1E964;
+  margin-top: 5px;
 }
 
 .backButton:hover {
@@ -302,9 +303,10 @@ footer {
 #viewAllP, #viewAllC {
   color: #36A07C;
 }
- #newCommentBtn:hover {
+
+#newCommentBtn:hover {
    background-color: turquoise;
- }
+}
 
 .com-box {
   background-color: #B1E964;
