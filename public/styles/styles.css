@@ -334,9 +334,16 @@ footer {
   background-color: #0D7788;
 }
 
-@media only screen and (max-width: 1170px){
+.dropdown-toggle {
+  width: 230px;
+}
+
+@media only screen and (max-width: 1230px){
   #searchBar {
     width: 200px;
+  }
+  .nav-link {
+    padding-left: 6px !important;
   }
 }
 
