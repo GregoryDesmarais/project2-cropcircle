@@ -18,7 +18,7 @@ $(function() {
   const $signOutButton = $("#signOut");
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
-  const $accordion = $("#accordion");
+  // const $accordion = $("#accordion");
   const $accountInfoBtn = $("#accountInfo");
   const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
@@ -44,10 +44,10 @@ $(function() {
       $("#signOut").show();
       populateNavBar();
       if (userInformation.data[0].favorites.includes(categoryValue)) {
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color": "#0d7787", "border": "1px #0d7787 solid", "color": "#56D376" }).html("Unfollow");
       } else {
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");    
-      } 
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color": "#56D376", "border": "1px #56D376 solid", "color": "#0c6573" }).html("Follow");
+      }
     } else {
       $("#signIn").show();
       $("#signUp").show();
@@ -311,7 +311,7 @@ $(function() {
     }
   };
 
-  const addNewFavorite = () => {   
+  const addNewFavorite = () => {
     if (userJWT !== undefined) {
       const user = userInformation.data[0];
       const unfavoritedItem = user.favorites.indexOf(categoryValue);
@@ -319,7 +319,7 @@ $(function() {
         console.log("splice running");
         userInformation.data[0].favorites.splice(unfavoritedItem, 1);
         sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color": "#56D376", "border": "1px #56D376 solid", "color": "#0c6573" }).html("Follow");
         populateNavBar();
         console.log(user.favorites);
         console.log(userInformation.data[0].favorites);
@@ -328,14 +328,14 @@ $(function() {
         userInformation.data[0].favorites.push(categoryValue);
         sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
         console.log(userInformation.data[0].favorites);
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color": "#0d7787", "border": "1px #0d7787 solid", "color": "#56D376" }).html("Unfollow");
         populateNavBar();
       }
       const updateFavorite = {
         UserId: user.id,
         newFavorites: user.favorites.join(",")
       };
-      
+
       API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
         console.log(data);
       });
@@ -387,7 +387,7 @@ $(function() {
 
   });
 
-  $accordion.on("click", ".getUserInfo", event => {
+  $("body").on("click", ".getUserInfo", event => {
     event.preventDefault();
     console.log(event.target.name);
     const paramId = event.target.name;
