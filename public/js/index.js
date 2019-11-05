@@ -30,7 +30,7 @@ $(function() {
   let userJWT;
   let category;
 
-  String.prototype.capitalize = function() {
+  String.prototype.capitalize = () => {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
@@ -114,9 +114,9 @@ $(function() {
   };
 
   // refreshExamples gets new examples from the db and repopulates the list
-  var refreshExamples = function() {
-    API.getExamples().then(function(data) {
-      var $examples = data.map(function(example) {
+  var refreshExamples = () => {
+    API.getExamples().then(data => {
+      var $examples = data.map(example => {
         var $a = $("<a>")
           .text(example.text)
           .attr("href", "/example/" + example.id);
@@ -144,7 +144,7 @@ $(function() {
 
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  var handleFormSubmit = function(event) {
+  var handleFormSubmit = event => {
     event.preventDefault();
 
     var example = {
@@ -157,7 +157,7 @@ $(function() {
       return;
     }
 
-    API.saveExample(example).then(function() {
+    API.saveExample(example).then(() => {
       refreshExamples();
     });
 
