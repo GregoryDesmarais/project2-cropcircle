@@ -26,8 +26,23 @@ module.exports = function(app) {
     ) {
       const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
       res.render("userPosts", {
-        post: sortedPosts, 
+        post: sortedPosts,
         userName: req.params.user
+      });
+    });
+  });
+
+  app.get("/user/:user/comments", function(req, res) {
+    db.Comment.findAll({
+      where: {
+        userName: req.params.user,
+      },
+      include: [{ model: db.Post }] //This, with the foreignKey in Comment.js will return the Post info as well.  Can be accessed in handlebars as {{Post.<column name>}}
+    }).then(function(posts) {
+      const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
+      res.render("userComments", {
+        comments: sortedPosts,
+        userName: req.params.user,
       });
     });
   });
