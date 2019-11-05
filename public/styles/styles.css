@@ -87,7 +87,7 @@ button:active {
 .category-header {
     z-index: 1;
     opacity: 90%;
-    background-color: #0c6573;
+    background-color: #1e7d8b;
     color: #56D376;
     font-size: 2.5rem;
     margin-bottom: 50px; 
@@ -242,7 +242,7 @@ footer {
 }
 
 #favoriteThisCategory:hover {
-    background-color: #0D7788;
+    background-color: rgb(22, 200, 228);
 }
 
 .main-sub-btn:hover {
@@ -332,6 +332,33 @@ footer {
 
 #tos:hover {
   background-color: #0D7788;
+}
+
+@media only screen and (max-width: 1170px){
+  #searchBar {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 580px){
+  .followBtn {
+    position: absolute;
+    left: 0px;
+  }
+
+  .cat-header {
+    position: absolute;
+  }
+
+  .magicBtn {
+    position: absolute;
+    right: 0px;
+  }
+
+  .headingCont {
+    margin-bottom: 80px;
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (max-width: 500px){
