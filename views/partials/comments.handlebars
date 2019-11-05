@@ -1,6 +1,16 @@
 {{#each comments}}<!--For each comment in the "comments object, create the following element"-->
 <div class="card comment-card">
-    <div class="card-header com-info">By: {{userName}} At: {{createdAt}}</div> <!--Inserts the UserId and createdAt time in the card title-->
+    <div class="card-header com-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <a href="/{{PostId}}">Link</a>
+                </div>
+                <div class="col-6">
+                    {{!-- At: {{createdAt}}</div> <!--Inserts the UserId and createdAt time in the card title-->      --}}
+                </div>
+            </div>
+        </div> 
     <div class="card-body com-box">{{corntent}}</div><!--Inserts the comments content-->
 </div>
 {{/each}}<!--End each loop-->
