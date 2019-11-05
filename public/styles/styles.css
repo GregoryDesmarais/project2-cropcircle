@@ -407,4 +407,9 @@ footer {
     margin-bottom: 80px;
     margin-top: 10px;
   }
+
+  #newCommentBtn {
+    position: absolute;
+    right: 5px;
+  }
 }
