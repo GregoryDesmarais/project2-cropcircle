@@ -333,3 +333,44 @@ footer {
 #tos:hover {
   background-color: #0D7788;
 }
+
+@media only screen and (max-width: 500px){
+  .hamburger{
+    float: right;
+  }  
+
+  #homeBtn {
+    display: none;
+  }
+  .form-control {
+    margin-top: 3px;
+  }
+
+  .burger-box {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .nav-link {
+    padding-left: 6px !important;
+  }
+
+  .followBtn {
+    position: absolute;
+    left: 0px;
+  }
+
+  .cat-header {
+    position: absolute;
+  }
+
+  .magicBtn {
+    position: absolute;
+    right: 0px;
+  }
+  
+  .headingCont {
+    margin-bottom: 80px;
+    margin-top: 10px;
+  }
+}
