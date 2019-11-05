@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
   //Comment "belongsTo" a single post.
   Comment.associate = function(models) {
     Comment.belongsTo(models.Post, {
+      foreignKey: "PostId", //This was added to connect the comment to the PostId.
       onDelete: "cascade"
     });
   };
