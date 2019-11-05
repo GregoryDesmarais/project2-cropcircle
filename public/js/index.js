@@ -362,7 +362,7 @@ $(function() {
   $(".main-sub-btn").on("click", (searchParam) => {
     event.preventDefault();
 
-    var searchParam = $("#searchBar").val().trim();
+    var searchParam = $("#searchBar").val().trim().toLowerCase();
 
     console.log(searchParam);
 
