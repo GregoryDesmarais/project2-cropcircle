@@ -191,7 +191,7 @@ $(function() {
     $(".newUserErrorMessage").hide();
     if (!(
       userName &&
-                userName.length < 10 &&
+                userName.length < 20 &&
                 userName.length > 3 &&
                 userEmail &&
                 userPass
