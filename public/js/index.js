@@ -191,17 +191,10 @@ $(function () {
     $(".newUserErrorMessage").hide();
     if (!(
       userName &&
-<<<<<<< HEAD
-      userName.length < 10 &&
-      userName.length > 3 &&
-      userEmail &&
-      userPass
-=======
                 userName.length < 20 &&
                 userName.length > 3 &&
                 userEmail &&
                 userPass
->>>>>>> 59105b41e91cc196955fd63b61fc2164f7916420
     )) {
       $(".invalidField")
         .show()
