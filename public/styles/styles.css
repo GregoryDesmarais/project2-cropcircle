@@ -34,6 +34,7 @@ button:active {
     font-size: 25px;
     margin-left: 0px;
     color: #1A2D3E;
+    overflow: hidden;
 }
 
 .postTitle:hover {
@@ -421,4 +422,8 @@ footer {
 .magicBtn {
     z-index: 100;
     width: auto;
+}
+
+.acceptTerms{
+    font-size: 1em;
 }
