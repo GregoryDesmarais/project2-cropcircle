@@ -290,6 +290,12 @@ footer {
     animation-iteration-count: 1;
 }
 
+.orangeAlien {
+    animation-duration: 15s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
 #getInfoUserName {
     color: #0D7788;
 }
