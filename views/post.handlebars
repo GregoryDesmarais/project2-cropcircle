@@ -1,15 +1,16 @@
 <div class="category-header text-center">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2 text-left">
-            <a href='/{{category}}' class="btn btn-primary backButton">Back to {{category}}</a>
-            <button class="btn btn-primary" id="newCommentBtn" data-post="{{post}}" data-category="{{category}}">Add a comment!</button>
-            </div>
-            <div class="col-sm-8">
-                <h1>{{title.header}}</h1>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 text-left">
+        <a href='/{{category}}' class="btn btn-primary backButton">Back to {{category}}</a>
+        <button class="btn btn-primary" id="newCommentBtn" data-post="{{post}}" data-category="{{category}}">Add a
+          comment!</button>
+      </div>
+      <div class="col-sm-8">
+        <h1>{{title.header}}</h1>
+      </div>
     </div>
+  </div>
 </div>
 
 {{#each post}}
@@ -26,7 +27,7 @@
 {{>comments}}
 {{else}}
 <div class="card comment-card">
-  <div class="card-header com-info">There are no comments for this post!</div>
+  <div class="card-header com-info"><img src="/images/ufo.png">There are no comments for this post!</div>
   <!--Inserts the userName and createdAt time in the card title-->
   <div class="card-body com-box">Does no one give a husk!?</div>
   <!--Inserts the comments content-->
@@ -35,25 +36,29 @@
 </div>
 
 <div class="modal" id="newCommentModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><font color="#0D7788">Add New Comment</font></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="newCommetContent"><font color="#0D7788">Post Body</font></label>
-                        <textarea class="form-control col-12 newPostTextArea" id="newCommentContent"
-                            placeholder="Comment"></textarea>
-                    </div>
-                    <p class="logInErrorMessage">One or more fields invalid</p>
-                </form>
-                <button class="btn btn-primary" id="submitNewCommentBtn">Submit</button>
-            </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <font color="#0D7788">Add New Comment</font>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="newCommetContent">
+              <font color="#0D7788">Post Body</font>
+            </label>
+            <textarea class="form-control col-12 newPostTextArea" id="newCommentContent"
+              placeholder="Comment"></textarea>
+          </div>
+          <p class="logInErrorMessage">One or more fields invalid</p>
+        </form>
+        <button class="btn btn-primary" id="submitNewCommentBtn">Submit</button>
+      </div>
     </div>
+  </div>
 </div>
