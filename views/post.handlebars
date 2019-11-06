@@ -7,12 +7,29 @@
           comment!</button>
       </div>
       <div class="col-sm-8">
-        <h1>{{title.header}}</h1>
+        <h1>{{OP.header}}</h1>
       </div>
     </div>
   </div>
 </div>
-
+<div class="accordion">
+  <div class="postWrap">
+    <div class="card postHeaders">
+      <div class="card-header text-center">
+        {{OP.header}}
+      </div>
+      <div class="accordion-collapse">
+        <div class="card-body">
+          {{OP.corntent}}
+        </div>
+      </div>
+    </div>
+    <div class="commentLinkFromPost text-right col-12">
+      <a id="getUserInfo{{OP.UserId}}" class="getUserInfo postLink" href="#" name="{{OP.UserId}}"><img
+          src="/images/alien.png"> {{OP.userName}}</a>
+    </div>
+  </div>
+</div>
 {{#each post}}
 <div class="card">
   <div class="card-header">
