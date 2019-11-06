@@ -18,7 +18,7 @@ $(function () {
   const $signOutButton = $("#signOut");
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
-  const $accordion = $("#accordion");
+  // const $accordion = $("#accordion");
   const $accountInfoBtn = $("#accountInfo");
   const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
@@ -241,7 +241,7 @@ $(function () {
 
   };
 
-  const newPostModal = () => {
+  const newPostModal = function() {
     if (userJWT !== undefined) {
       category = $(this).data("category");
       $("#newPostModal").modal("toggle");
@@ -286,7 +286,7 @@ $(function () {
     });
   };
 
-  const newCommentModal = () => {
+  const newCommentModal = function() {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
@@ -362,7 +362,7 @@ $(function () {
   $(".main-sub-btn").on("click", (searchParam) => {
     event.preventDefault();
 
-    var searchParam = $("#searchBar").val().trim();
+    var searchParam = $("#searchBar").val().trim().toLowerCase();
 
     console.log(searchParam);
 
@@ -387,7 +387,7 @@ $(function () {
 
   });
 
-  $accordion.on("click", ".getUserInfo", event => {
+  $("body").on("click", ".getUserInfo", event => {
     event.preventDefault();
     console.log(event.target.name);
     const paramId = event.target.name;

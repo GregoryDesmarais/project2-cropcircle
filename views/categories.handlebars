@@ -12,17 +12,17 @@
     </div>
     {{/each}}
 </div> -->
-<div class="category-header text-center">
-    <div class="container-fluid">
+<div class="category-header text-center headingCont">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-2 text-left">
+            <div class="col-sm-2 text-left followBtn">
                 <button class="btn btn-secondary" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
             </div>
-            <div class="col-sm-8">
-                <h1>/{{category}}</h1>
+            <div class="col-sm-8 cat-header">
+                <h1 id="cat-head">/{{category}}</h1>
             </div>
-            <div class="col-sm-2 text-right">
-                <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">Submit New Post</button>
+            <div class="col-sm-2 text-right magicBtn">
+                <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">New Post</button>
             </div>
         </div>
     </div>
