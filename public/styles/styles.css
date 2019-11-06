@@ -90,7 +90,7 @@ button:active {
     background-color: #1e7d8b;
     color: #56D376;
     font-size: 2.5rem;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
 }
 
 .newUserErrorMessage,
@@ -136,7 +136,8 @@ button:active {
     width: 200px;
 }
 
-#homeBtn, #homeBtn:hover {
+#homeBtn,
+#homeBtn:hover {
     color: #56D376;
     text-decoration: none;
 }
@@ -278,126 +279,134 @@ footer {
 }
 
 .pinkAlien {
-  animation-duration: 15s;
-  animation-delay: 2s;
-  animation-iteration-count: 1;
+    animation-duration: 15s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
 }
 
 #getInfoUserName {
-  color: #0D7788;
+    color: #0D7788;
 }
 
 .list-group-item {
-  color: #0D7788;
+    color: #0D7788;
 }
 
 #getInfoUserCommentsMade {
-  color: #1A2D3E;
+    color: #1A2D3E;
 }
 
-.backButton{
-  color: #1A2D3E;
-  background-color: #B1E964;
-  margin-top: 5px;
+.backButton {
+    color: #1A2D3E;
+    background-color: #B1E964;
+    margin-top: 5px;
 }
 
 .backButton:hover {
-  background-color: #0D7788;
+    background-color: #0D7788;
 }
 
-#viewAllP, #viewAllC {
-  color: #36A07C;
+#viewAllP,
+#viewAllC {
+    color: #36A07C;
 }
 
 #newCommentBtn:hover {
-   background-color: turquoise;
+    background-color: turquoise;
 }
 
 .com-box {
-  background-color: #B1E964;
+    background-color: #B1E964;
 }
 
 .com-info {
-  background-color: turquoise;
+    background-color: turquoise;
 }
 
 .comment-card {
-  margin: auto;
-  max-width: 600px;
+    margin: auto;
+    max-width: 600px;
 }
 
 #tos {
-  background-color: turquoise;
+    background-color: turquoise;
 }
 
 #tos:hover {
-  background-color: #0D7788;
+    background-color: #0D7788;
 }
 
-@media only screen and (max-width: 1170px){
-  #searchBar {
-    width: 200px;
-  }
+.dropdown-toggle {
+    width: 230px;
 }
 
-@media only screen and (max-width: 580px){
-  .followBtn {
-    position: absolute;
-    left: 0px;
-  }
-
-  .cat-header {
-    position: absolute;
-  }
-
-  .magicBtn {
-    position: absolute;
-    right: 0px;
-  }
-
-  .headingCont {
-    margin-bottom: 80px;
-    margin-top: 10px;
-  }
+@media only screen and (max-width: 1230px) {
+    #searchBar {
+        width: 200px;
+    }
+    .nav-link {
+        padding-left: 6px !important;
+    }
 }
 
-@media only screen and (max-width: 500px){
-  .hamburger{
-    float: right;
-  }  
+@media only screen and (max-width: 580px) {
+    .followBtn {
+        position: absolute;
+        left: 0px;
+    }
+    .cat-header {
+        position: absolute;
+    }
+    .magicBtn {
+        position: absolute;
+        right: 0px;
+    }
+    .headingCont {
+        margin-bottom: 80px;
+        margin-top: 10px;
+    }
+}
 
-  #homeBtn {
-    display: none;
-  }
-  .form-control {
-    margin-top: 3px;
-  }
+@media only screen and (max-width: 500px) {
+    .hamburger {
+        float: right;
+    }
+    #homeBtn {
+        display: none;
+    }
+    .form-control {
+        margin-top: 3px;
+    }
+    .burger-box {
+        width: 100%;
+        overflow: hidden;
+    }
+    .nav-link {
+        padding-left: 6px !important;
+    }
+    .followBtn {
+        position: absolute;
+        left: 0px;
+    }
+    .cat-header {
+        position: absolute;
+    }
+    .magicBtn {
+        position: absolute;
+        right: 0px;
+    }
+    .headingCont {
+        margin-bottom: 80px;
+        margin-top: 10px;
+    }
+    #newCommentBtn {
+        position: absolute;
+        right: 5px;
+    }
+}
 
-  .burger-box {
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .nav-link {
-    padding-left: 6px !important;
-  }
-
-  .followBtn {
-    position: absolute;
-    left: 0px;
-  }
-
-  .cat-header {
-    position: absolute;
-  }
-
-  .magicBtn {
-    position: absolute;
-    right: 0px;
-  }
-  
-  .headingCont {
-    margin-bottom: 80px;
-    margin-top: 10px;
-  }
+.followBtn,
+.magicBtn {
+    z-index: 100;
+    width: auto;
 }

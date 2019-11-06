@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
-$(function() {
+$(function () {
   // Get references to page elements
   const $newPostButton = $("#newPostBtn");
   const $submitNewPost = $("#submitNewPostBtn");
@@ -30,14 +30,14 @@ $(function() {
   let userJWT;
   let category;
 
-  String.prototype.capitalize = function() {
+  String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
   const initialize = () => {
     if (userInformation !== null) {
       userJWT = userInformation.data[1];
-      $(".accountInfo").html(userInformation.data[0].userName);
+      $(".accountInfo").html(`<img src="/images/alien.png"> ${userInformation.data[0].userName}`);
       $("#signIn").hide();
       $("#signUp").hide();
       $("#accountInfo").show();
@@ -67,7 +67,7 @@ $(function() {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postRequest: function(example, targetURL) {
+    postRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
@@ -77,7 +77,7 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    putRequest: function(example, targetURL) {
+    putRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -88,7 +88,7 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    submitPost: function(newPost, targetURL) {
+    submitPost: function (newPost, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -99,13 +99,13 @@ $(function() {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function(targetURL) {
+    getExamples: function (targetURL) {
       return $.ajax({
         url: targetURL,
         type: "GET"
       });
     },
-    deleteExample: function(id) {
+    deleteExample: function (id) {
       return $.ajax({
         url: `${targetURL}/${id}`,
         type: "DELETE"
@@ -167,12 +167,12 @@ $(function() {
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
-  var handleDeleteBtnClick = function() {
+  var handleDeleteBtnClick = function () {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
 
-    API.deleteExample(idToDelete).then(function() {
+    API.deleteExample(idToDelete).then(function () {
       refreshExamples();
     });
   };
@@ -191,7 +191,7 @@ $(function() {
     $(".newUserErrorMessage").hide();
     if (!(
       userName &&
-                userName.length < 10 &&
+                userName.length < 20 &&
                 userName.length > 3 &&
                 userEmail &&
                 userPass
@@ -263,7 +263,7 @@ $(function() {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newPost, "/api/posts").then(function(data) {
+      API.submitPost(newPost, "/api/posts").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -280,7 +280,7 @@ $(function() {
       let viewAllPosts = `<li class="list-group-item" id="viewAllP"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
       let viewAllComments = `<li class="list-group-item" id="viewAllC"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
       console.log(data);
-      $("#getInfoUserName").html(`${data.userName}`);
+      $("#getInfoUserName").html(`<img src="/images/alien.png"> ${data.userName}`);
       $("#userInfoList").html(`${userInfoPostsMade}${viewAllPosts}${userInfoCommentsMade}${viewAllComments}${userInfoTime}`);
       $("#userInfoModal").modal("toggle");
     });
@@ -303,7 +303,7 @@ $(function() {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newComment, "/api/comment").then(function(data) {
+      API.submitPost(newComment, "/api/comment").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -396,7 +396,7 @@ $(function() {
 
   initialize();
 
-  $("#tos").click(function() {
+  $("#tos").click(function () {
     if (!localStorage.acceptTerms) {
       localStorage.acceptTerms = true;
     }
