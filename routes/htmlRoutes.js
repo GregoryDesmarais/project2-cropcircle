@@ -56,7 +56,7 @@ module.exports = function(app) {
         }
       }).then(function(comments) {
         res.render("post", {
-          title: post,
+          OP: post,
           category: req.params.category.toLowerCase(),
           post: req.params.post,
           comments: comments
