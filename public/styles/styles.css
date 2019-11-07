@@ -34,6 +34,7 @@ button:active {
     font-size: 25px;
     margin-left: 0px;
     color: #1A2D3E;
+    overflow: hidden;
 }
 
 .postTitle:hover {
@@ -284,6 +285,18 @@ footer {
     animation-iteration-count: 1;
 }
 
+.blueAlien {
+    animation-duration: 15s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+}
+
+.orangeAlien {
+    animation-duration: 15s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
 #getInfoUserName {
     color: #0D7788;
 }
@@ -409,4 +422,8 @@ footer {
 .magicBtn {
     z-index: 100;
     width: auto;
+}
+
+.acceptTerms{
+    font-size: 1em;
 }

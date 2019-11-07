@@ -1,17 +1,3 @@
-{{!-- Picks every post from this category and renders to page --}}
-<!--
-<div class="container">
-    {{#each post}}
-    <div class="card">
-        <div class="card-header">
-            <a href="/{{category}}/{{id}}"> Title: {{header}}</a>
-        </div>
-        <div class="body">
-            {{corntent}}
-        </div>
-    </div>
-    {{/each}}
-</div> -->
 <div class="category-header text-center headingCont">
     <div class="container">
         <div class="row">
@@ -19,7 +5,7 @@
                 <button class="btn btn-secondary" id="favoriteThisCategory" data-category="{{category}}">Follow</button>
             </div>
             <div class="col-sm-8 cat-header">
-                <h1 id="cat-head">c/{{category}}</h1>
+                <h1 id="cat-head">/{{category}}</h1>
             </div>
             <div class="col-sm-2 text-right magicBtn">
                 <button class="btn btn-secondary" id="newPostBtn" data-category="{{category}}">New Post</button>
