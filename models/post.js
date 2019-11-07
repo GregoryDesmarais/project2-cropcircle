@@ -19,12 +19,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // Section not needed, as we are defining "Comment" has "belongingTo" a post.
-  // Post.associate = function(models) {
-  //   Post.hasMany(models.Comment, {
-  //     onDelete: "cascade"
-  //   });
-  // };
-
   return Post;
 };
