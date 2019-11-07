@@ -16,6 +16,8 @@ CropCircle is a small group collaboration done as a group assignment for the cod
 - jwt (JSON Web Token) npm
 - BootStrap
 - JQuery
+- Express
+- Express-handlebars
 
 ## How it works!
 Users can access different "categories" via the dropdown menu.  Or, if they have created a personal forum, they can manually navigate to it via the category name in the URL.  Example: [https://project2-project-boogaloo.herokuapp.com/coding](https://project2-project-boogaloo.herokuapp.com/coding).
