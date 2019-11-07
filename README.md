@@ -14,6 +14,9 @@ CropCircle is a small group collaboration done as a group assignment for the cod
 - mysql2 npm
 - sequelize npm
 - jwt (JSON Web Token) npm
+- express npm
+- express-handlebars npm
+- bcrypt npm
 - BootStrap
 - JQuery
 
