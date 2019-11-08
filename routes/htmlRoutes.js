@@ -26,7 +26,7 @@ module.exports = function(app) {
     ) {
       const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
       res.render("userPosts", {
-        post: sortedPosts, 
+        post: sortedPosts,
         userName: req.params.user
       });
     });
