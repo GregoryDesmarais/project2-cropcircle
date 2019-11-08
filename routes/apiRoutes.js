@@ -1,15 +1,10 @@
 /* eslint-disable prettier/prettier */
 var db = require("../models");
+var bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = function(app) {
-  // Get all categories
-  app.get("/api/:category", function(req, res) {
-    db.Post.findAll({ where: { category: req.params.category }}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
+  // Get user info
   app.get("/api/user/:id", (req, res) => {
     let userPosts;
     let userComments;
@@ -20,7 +15,7 @@ module.exports = function(app) {
       }
     }).then(data => {
       db.Post.findAll({
-        where:{
+        where: {
           UserId: userID
         }
       }).then(postData => {
@@ -34,7 +29,6 @@ module.exports = function(app) {
           const response = {
             userName: data.userName,
             memberSince: data.createdAt,
-            // likes: data.likes,
             commentsMade: userComments,
             postsMade: userPosts
           };
@@ -44,36 +38,15 @@ module.exports = function(app) {
     });
   });
 
+  // Update user favorites
   app.put("/api/updateFavorites", (req, res) => {
     console.log("this is runnning");
     db.User.update({
-      favorites : req.body.newFavorites},
-    {where: { id: req.body.UserId}}
-    ).then(result => res.json(result));
+      favorites: req.body.newFavorites
+    }, { where: { id: req.body.UserId } }).then(result => res.json(result));
   });
 
-  //Create a new user
-  app.post("/api/newUser", (req, res) => {
-    console.log(req.body);
-    db.User.findAll({
-      where: {
-        userName: req.body.name
-      }
-    }).then(data => {
-      if (data.length > 0) {
-        res.json({ newUser: false });
-      } else {
-        db.User.create({
-          userName: req.body.name,
-          email: req.body.email,
-          password: req.body.password
-        });
-        res.json({ newUser: true });
-      }
-    });
-  });
-
-  // Create a new example
+  // Create a new post
   app.post("/api/posts", verifyToken, (req, res) => {
     console.log(req.body);
     const requestData = JSON.parse(JSON.stringify(req.body));
@@ -96,42 +69,71 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/login", (req, res) => {
+  //Create a new user
+  app.post("/api/newUser", (req, res) => {
     console.log(req.body);
-    db.User.findOne({
+    db.User.findAll({
       where: {
-        userName: req.body.userName,
-        password: req.body.password
+        userName: req.body.name
       }
     }).then(data => {
-      console.log(data.dataValues);
-      const favorites = data.favorites.split(",");
-      user = {
-        id: data.id,
-        userName: data.dataValues.userName,
-        email: data.dataValues.email,
-        createdAt: data.dataValues.createdAt, 
-        favorites: favorites
-      };
-      jwt.sign({ user }, "secretkey", (err, token) => {
-        if (err) {
-          throw err;
+      if (data.length > 0) {
+        res.json({ newUser: false });
+      } else {
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+          db.User.create({
+            userName: req.body.name,
+            email: req.body.email,
+            password: hash
+          });
+        });
+        res.json({ newUser: true });
+      }
+    });
+  });
+
+  // User login
+  app.post("/api/login", (req, res) => {
+    db.User.findOne({
+      where: {
+        userName: req.body.userName
+      }
+    }).then(data => {
+      bcrypt.compare(req.body.password, data.dataValues.password).then(function(pwCheck) {
+        if (pwCheck) {
+          const favorites = data.favorites.split(",");
+          user = {
+            id: data.id,
+            userName: data.dataValues.userName,
+            email: data.dataValues.email,
+            createdAt: data.dataValues.createdAt,
+            favorites: favorites
+          };
         } else {
-          const data = [user, token];
-          res.json({ data });
+          console.log(pwCheck);
+          return;
         }
+        jwt.sign({ user }, "secretkey", (err, token) => {
+          if (err) {
+            throw err;
+          } else {
+            const data = [user, token];
+            res.json({ data });
+          }
+        });
       });
     });
   });
 
-  app.post("/api/comment", (req,res) => {
+  // Add comment to a post
+  app.post("/api/comment", (req, res) => {
     console.log(req.body);
     let comment = req.body;
     data = {
       PostId: comment.post,
-      userName: comment.userName, 
-      corntent: comment.corntent, 
-      UserId: comment.UserId, 
+      userName: comment.userName,
+      corntent: comment.corntent,
+      UserId: comment.UserId,
       category: comment.category
     };
     db.Comment.create(data).then(() => {
@@ -139,14 +141,8 @@ module.exports = function(app) {
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
+
+  // JWT function.
   function verifyToken(req, res, next) {
     const bearerHeader = req.headers.authorization;
     if (typeof bearerHeader !== "undefined") {

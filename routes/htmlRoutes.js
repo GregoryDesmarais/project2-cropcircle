@@ -20,6 +20,7 @@ module.exports = function(app) {
     });
   });
 
+  //Get all posts for a user.
   app.get("/user/:user/posts", function(req, res) {
     db.Post.findAll({ where: { userName: req.params.user } }).then(function(
       posts
@@ -32,7 +33,23 @@ module.exports = function(app) {
     });
   });
 
-  //Beginnings of grabbing all comments for a post. "Should" grab all comments where PostId = the post parameter number.
+  //Get all comments for a user.
+  app.get("/user/:user/comments", function(req, res) {
+    db.Comment.findAll({
+      where: {
+        userName: req.params.user,
+      },
+      include: [{ model: db.Post }] //This, with the foreignKey in Comment.js will return the Post info as well.  Can be accessed in handlebars as {{Post.<column name>}}
+    }).then(function(posts) {
+      const sortedPosts = posts.sort((a, b) => a.id < b.id ? 1 : -1);
+      res.render("userComments", {
+        comments: sortedPosts,
+        userName: req.params.user,
+      });
+    });
+  });
+
+  //Grab all comments for a post.
   app.get("/:category/:post", function(req, res) {
     db.Post.findOne({ where: { id: req.params.post } }).then(function(post) {
       db.Comment.findAll({
@@ -41,7 +58,7 @@ module.exports = function(app) {
         }
       }).then(function(comments) {
         res.render("post", {
-          title: post,
+          OP: post,
           category: req.params.category.toLowerCase(),
           post: req.params.post,
           comments: comments

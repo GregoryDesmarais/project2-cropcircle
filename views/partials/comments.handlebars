@@ -1,6 +1,28 @@
-{{#each comments}}<!--For each comment in the "comments object, create the following element"-->
+{{!-- For each comment in the "comments object, create the following element" --}}
+<img src="/images/blueAlien.png"  class="animated fadeInRightBig blueAlien"/>
+{{#each comments}}
 <div class="card comment-card">
-    <div class="card-header com-info">By: {{userName}} At: {{createdAt}}</div> <!--Inserts the UserId and createdAt time in the card title-->
-    <div class="card-body com-box">{{corntent}}</div><!--Inserts the comments content-->
+    <div class="card-header com-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <a id="getUserInfo{{UserId}}" class="getUserInfo postLink" href="#" name="{{UserId}}"><img
+                    src="/images/alien.png"> {{userName}}</a>
+                </div>
+                {{!-- Check to see if comments has a Post object with it.  If it does, display the following divs. --}}
+                {{#if Post}}
+                <div class="col-4">
+                    Category: <a href="/{{Post.category}}">{{Post.category}}</a>
+                </div>
+                <div class="col-4">
+                    Post: <a href="/{{Post.category}}/{{Post.id}}">{{Post.header}}</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        </div> 
+        {{!-- Inserts the comments content --}}
+    <div class="card-body com-box">{{corntent}}</div>
 </div>
-{{/each}}<!--End each loop-->
+{{!-- End each loop --}}
+{{/each}}

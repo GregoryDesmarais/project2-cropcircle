@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
-$(function() {
+$(function () {
   // Get references to page elements
   const $newPostButton = $("#newPostBtn");
   const $submitNewPost = $("#submitNewPostBtn");
@@ -18,7 +18,7 @@ $(function() {
   const $signOutButton = $("#signOut");
   const $newPostContent = $("#newPostContent");
   const $newPostTitle = $("#newPostTitle");
-  const $accordion = $("#accordion");
+  // const $accordion = $("#accordion");
   const $accountInfoBtn = $("#accountInfo");
   const $newCommentButton = $("#newCommentBtn");
   const $newCommentContent = $("#newCommentContent");
@@ -30,24 +30,24 @@ $(function() {
   let userJWT;
   let category;
 
-  String.prototype.capitalize = function() {
+  String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
   const initialize = () => {
     if (userInformation !== null) {
       userJWT = userInformation.data[1];
-      $(".accountInfo").html(userInformation.data[0].userName);
+      $(".accountInfo").html(`<img src="/images/alien.png"> ${userInformation.data[0].userName}`);
       $("#signIn").hide();
       $("#signUp").hide();
       $("#accountInfo").show();
       $("#signOut").show();
       populateNavBar();
       if (userInformation.data[0].favorites.includes(categoryValue)) {
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color": "#0d7787", "border": "1px #0d7787 solid", "color": "#56D376" }).html("Unfollow");
       } else {
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");    
-      } 
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color": "#56D376", "border": "1px #56D376 solid", "color": "#0c6573" }).html("Follow");
+      }
     } else {
       $("#signIn").show();
       $("#signUp").show();
@@ -67,7 +67,7 @@ $(function() {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postRequest: function(example, targetURL) {
+    postRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
@@ -77,7 +77,7 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    putRequest: function(example, targetURL) {
+    putRequest: function (example, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -88,7 +88,7 @@ $(function() {
         data: JSON.stringify(example)
       });
     },
-    submitPost: function(newPost, targetURL) {
+    submitPost: function (newPost, targetURL) {
       return $.ajax({
         headers: {
           authorization: `Bearer ${userJWT}`,
@@ -99,13 +99,13 @@ $(function() {
         data: JSON.stringify(newPost)
       });
     },
-    getExamples: function(targetURL) {
+    getExamples: function (targetURL) {
       return $.ajax({
         url: targetURL,
         type: "GET"
       });
     },
-    deleteExample: function(id) {
+    deleteExample: function (id) {
       return $.ajax({
         url: `${targetURL}/${id}`,
         type: "DELETE"
@@ -167,12 +167,12 @@ $(function() {
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
-  var handleDeleteBtnClick = function() {
+  var handleDeleteBtnClick = function () {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
 
-    API.deleteExample(idToDelete).then(function() {
+    API.deleteExample(idToDelete).then(function () {
       refreshExamples();
     });
   };
@@ -191,7 +191,7 @@ $(function() {
     $(".newUserErrorMessage").hide();
     if (!(
       userName &&
-                userName.length < 10 &&
+                userName.length < 20 &&
                 userName.length > 3 &&
                 userEmail &&
                 userPass
@@ -241,7 +241,7 @@ $(function() {
 
   };
 
-  const newPostModal = () => {
+  const newPostModal = function() {
     if (userJWT !== undefined) {
       category = $(this).data("category");
       $("#newPostModal").modal("toggle");
@@ -263,7 +263,7 @@ $(function() {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newPost, "/api/posts").then(function(data) {
+      API.submitPost(newPost, "/api/posts").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -280,13 +280,13 @@ $(function() {
       let viewAllPosts = `<li class="list-group-item" id="viewAllP"><a href='/user/${data.userName}/posts'>View all Posts</a></li>`;
       let viewAllComments = `<li class="list-group-item" id="viewAllC"><a href='/user/${data.userName}/comments'>View all Comments</a></li>`;
       console.log(data);
-      $("#getInfoUserName").html(`${data.userName}`);
+      $("#getInfoUserName").html(`<img src="/images/alien.png"> ${data.userName}`);
       $("#userInfoList").html(`${userInfoPostsMade}${viewAllPosts}${userInfoCommentsMade}${viewAllComments}${userInfoTime}`);
       $("#userInfoModal").modal("toggle");
     });
   };
 
-  const newCommentModal = () => {
+  const newCommentModal = function() {
     post = $(this).data("post");
     $("#newCommentModal").modal("toggle");
   };
@@ -303,7 +303,7 @@ $(function() {
     if (userInformation === null) {
       console.log("you ain't logged in dawg");
     } else {
-      API.submitPost(newComment, "/api/comment").then(function(data) {
+      API.submitPost(newComment, "/api/comment").then(function (data) {
         if (data.postMade) {
           location.reload();
         }
@@ -311,7 +311,7 @@ $(function() {
     }
   };
 
-  const addNewFavorite = () => {   
+  const addNewFavorite = () => {
     if (userJWT !== undefined) {
       const user = userInformation.data[0];
       const unfavoritedItem = user.favorites.indexOf(categoryValue);
@@ -319,7 +319,7 @@ $(function() {
         console.log("splice running");
         userInformation.data[0].favorites.splice(unfavoritedItem, 1);
         sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
-        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color" : "#56D376", "border" : "1px #56D376 solid", "color" : "#0c6573" }).html("Follow");
+        $favoriteCategoryBtn.attr("data-favorited", false).css({ "background-color": "#56D376", "border": "1px #56D376 solid", "color": "#0c6573" }).html("Follow");
         populateNavBar();
         console.log(user.favorites);
         console.log(userInformation.data[0].favorites);
@@ -328,14 +328,14 @@ $(function() {
         userInformation.data[0].favorites.push(categoryValue);
         sessionStorage.setItem("cornHubUser", JSON.stringify(userInformation));
         console.log(userInformation.data[0].favorites);
-        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color" : "#0d7787", "border" : "1px #0d7787 solid", "color" : "#56D376" }).html("Unfollow");
+        $favoriteCategoryBtn.attr("data-favorited", true).css({ "background-color": "#0d7787", "border": "1px #0d7787 solid", "color": "#56D376" }).html("Unfollow");
         populateNavBar();
       }
       const updateFavorite = {
         UserId: user.id,
         newFavorites: user.favorites.join(",")
       };
-      
+
       API.putRequest(updateFavorite, "/api/updateFavorites").then(data => {
         console.log(data);
       });
@@ -362,17 +362,9 @@ $(function() {
   $(".main-sub-btn").on("click", (searchParam) => {
     event.preventDefault();
 
-    var searchParam = $("#searchBar").val().trim();
+    var searchParam = $("#searchBar").val().trim().toLowerCase();
 
     console.log(searchParam);
-
-    // $.ajax({
-    //   url: "http://localhost:3000/api/" + searchParam,
-    //   method: "GET"
-    // }).then((res) => {
-    //   console.log(res);
-    // });
-
 
     $(".cat-name").text("c/" + searchParam);
 
@@ -387,7 +379,7 @@ $(function() {
 
   });
 
-  $accordion.on("click", ".getUserInfo", event => {
+  $("body").on("click", ".getUserInfo", event => {
     event.preventDefault();
     console.log(event.target.name);
     const paramId = event.target.name;
@@ -396,7 +388,7 @@ $(function() {
 
   initialize();
 
-  $("#tos").click(function() {
+  $("#tos").click(function () {
     if (!localStorage.acceptTerms) {
       localStorage.acceptTerms = true;
     }
