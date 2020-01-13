@@ -24,3 +24,5 @@ CropCircle is a small group collaboration done as a group assignment for the cod
 Users can access different "categories" via the dropdown menu.  Or, if they have created a personal forum, they can manually navigate to it via the category name in the URL.  Example: [https://project2-cropcircle.herokuapp.com/coding](https://project2-project-boogaloo.herokuapp.com/coding).
 
 The server will then query the database to return all posts for that category.  
+
+![site image](/readme_files/site.png)
